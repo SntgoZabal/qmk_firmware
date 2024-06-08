@@ -14,16 +14,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-void set_primary_color(uint8_t h, uint8_t s, uint8_t v) {
-    rgblight_set_clipping_range(1, 1);
-    rgblight_sethsv(h, s, v);
-    rgblight_set_clipping_range(0, 87);
+void set_primary_color(uint8_t r, uint8_t g, uint8_t b) {
+    rgb_matrix_set_color(5, r, g, b);
 }
 
-void set_secondary_color(uint8_t h, uint8_t s, uint8_t v) {
-    rgblight_set_clipping_range(1, 1);
-    rgblight_sethsv(h, s, v);
-    rgblight_set_clipping_range(0, 87);
+void set_secondary_color(uint8_t r, uint8_t g, uint8_t b) {
+    rgb_matrix_set_color(6, r, g, b);
 }
 
 enum custom_keycodes {

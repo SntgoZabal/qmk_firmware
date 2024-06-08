@@ -18,7 +18,7 @@ void set_primary_color(uint8_t h, uint8_t s, uint8_t v) {
     rgblight_sethsv(h, s, v);
 }
 
-void set_secondary_color(uint8_t r, uint8_t g, uint8_t b) {
+void set_secondary_color(uint8_t h, uint8_t s, uint8_t v) {
     rgblight_sethsv_at(h, s, v, 1); // Example: Set the secondary color at a specific index
 }
 

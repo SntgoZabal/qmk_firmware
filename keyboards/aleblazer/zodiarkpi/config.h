@@ -52,7 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_KEYPRESSES
 #define RGB_DISABLE_AFTER_TIMEOUT 0.5
-#define RGB_DISABLE_WHEN_USB_SUSPENDED true
+#define RGB_MATRIX_SLEEP true
      /* Enable individiual effects */
 #define ENABLE_RGB_MATRIX_ALPHAS_MODS
 #define ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN

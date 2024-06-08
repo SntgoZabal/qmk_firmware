@@ -13,7 +13,7 @@ RGB_MATRIX_EFFECT(my_cool_effect2)
 // e.g: A simple effect, self-contained within a single method
 static bool my_cool_effect(effect_params_t* params) {
   RGB_MATRIX_USE_LIMITS(led_min, led_max);
-  for (uint8_t i = led_min; i < led_max; i++) {
+  for (uint8_t i = 1; i < led_max; i++) {
     rgb_matrix_set_color(i, 0xff, 0xff, 0x00);
   }
   return led_max < 87;
@@ -29,7 +29,7 @@ static void my_cool_effect2_complex_init(effect_params_t* params) {
 }
 static bool my_cool_effect2_complex_run(effect_params_t* params) {
   RGB_MATRIX_USE_LIMITS(led_min, led_max);
-  for (uint8_t i = led_min; i < led_max; i++) {
+  for (uint8_t i = 1; i < led_max; i++) {
     rgb_matrix_set_color(i, 0xff, some_global_state++, 0xff);
   }
 

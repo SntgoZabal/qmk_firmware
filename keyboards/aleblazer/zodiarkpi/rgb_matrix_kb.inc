@@ -16,7 +16,7 @@ static bool my_cool_effect(effect_params_t* params) {
   for (uint8_t i = led_min; i < led_max; i++) {
     rgb_matrix_set_color(i, 0xff, 0xff, 0x00);
   }
-  return led_max < DRIVER_LED_TOTAL;
+  return led_max < 87;
 }
 
 // e.g: A more complex effect, relying on external methods and state, with
@@ -31,7 +31,7 @@ static bool my_cool_effect2_complex_run(effect_params_t* params) {
     rgb_matrix_set_color(i, 0xff, some_global_state++, 0xff);
   }
 
-  return led_max < DRIVER_LED_TOTAL;
+  return led_max < 87;
 }
 static bool my_cool_effect2(effect_params_t* params) {
   if (params->init) my_cool_effect2_complex_init(params);

@@ -51,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
      /* Enable Framebuffer and keypress effects */
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_KEYPRESSES
-#define RGB_DISABLE_AFTER_TIMEOUT 0.5
+#define RGB_DISABLE_AFTER_TIMEOUT 5
 #define RGB_MATRIX_SLEEP true
      /* Enable individiual effects */
 #define ENABLE_RGB_MATRIX_ALPHAS_MODS

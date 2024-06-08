@@ -33,12 +33,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RGB_PRIMUP:
             if (record->event.pressed) {
-                set_primary_color(255, 0, 0); // Set primary color to red
+                //set_primary_color(255, 0, 0); // Set primary color to red
+                rgb_matrix_mode(my_cool_effect)
             }
             return false;
         case RGB_PRIMDN:
             if (record->event.pressed) {
-                set_primary_color(0, 0, 255); // Set primary color to red
+                //set_primary_color(0, 0, 255); // Set primary color to red
+                rgb_matrix_mode(my_cool_effect2)
             }
             return false;
         case RGB_SECNUP:

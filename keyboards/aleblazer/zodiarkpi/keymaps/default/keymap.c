@@ -23,8 +23,10 @@ void set_secondary_color(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 enum custom_keycodes {
-    RGB_PRIM = SAFE_RANGE,
-    RGB_SEC
+    RGB_PRIMUP = SAFE_RANGE,
+    RGB_PRUMDN,
+    RGB_SECNUP,
+    RGB_SECNDN
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {

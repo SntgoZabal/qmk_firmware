@@ -1,8 +1,8 @@
 #include QMK_KEYBOARD_H
 
-#ifdef RGB_MATRIX_ENABLE
-
 #include "rgb_matrix_kb.inc"
+
+#ifdef RGB_MATRIX_ENABLE
 
 // Define custom keyboard effect
 bool rgb_matrix_indicators_kb(void) {

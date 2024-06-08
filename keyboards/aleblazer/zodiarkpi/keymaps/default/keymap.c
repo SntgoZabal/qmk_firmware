@@ -14,14 +14,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-void set_primary_color(uint8_t r, uint8_t g, uint8_t b) {
-    rgb_matrix_set_color(5, r, g, b);
-}
-
-void set_secondary_color(uint8_t r, uint8_t g, uint8_t b) {
-    rgb_matrix_set_color(6, r, g, b);
-}
-
 enum custom_keycodes {
     RGB_PRIMUP = SAFE_RANGE,
     RGB_PRIMDN,
@@ -29,28 +21,27 @@ enum custom_keycodes {
     RGB_SECNDN
 };
 
+#ifdef RGB_MATRIX_ENABLE
+
+// Register custom effects
+RGB_MATRIX_EFFECT(my_cool_effect)
+RGB_MATRIX_EFFECT(my_cool_effect2)
+
+#endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RGB_PRIMUP:
             if (record->event.pressed) {
-                //set_primary_color(255, 0, 0); // Set primary color to red
-                rgb_matrix_mode(my_cool_effect)
+                // Switch to custom effect 1
+                rgb_matrix_mode_noeeprom(my_cool_effect);
             }
             return false;
+
         case RGB_PRIMDN:
             if (record->event.pressed) {
-                //set_primary_color(0, 0, 255); // Set primary color to red
-                rgb_matrix_mode(my_cool_effect2)
-            }
-            return false;
-        case RGB_SECNUP:
-            if (record->event.pressed) {
-                set_secondary_color(255, 0, 0); // Set secondary color to blue
-            }
-            return false;
-        case RGB_SECNDN:
-            if (record->event.pressed) {
-                set_secondary_color(0, 0, 255); // Set secondary color to blue
+                // Switch to custom effect 2
+                rgb_matrix_mode_noeeprom(my_cool_effect2);
             }
             return false;
     }
@@ -86,8 +77,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[3] = LAYOUT(
       QK_BOOT,   KC_F1,       KC_F2,        KC_F3,     KC_F4,      KC_F5,                                                            KC_F6,      KC_F7,       KC_F8,       KC_F9,      KC_F10,     KC_F11,
       _______,   _______,     _______,      _______,   _______,    _______,                                                          _______,    _______,     _______,     _______,    _______,    KC_F12,
-      _______,   RGB_PRIMUP,  RGB_SECNUP,   _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_TOG,     _______,     _______,    _______,    _______,
-      _______,   RGB_PRIMDN,  RGB_SECNDN,   _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_MOD,     RGB_SPI,     RGB_HUI,    RGB_SAI,    RGB_VAI,
+      _______,   RGB_PRIMUP,  _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_TOG,     _______,     _______,    _______,    _______,
+      _______,   RGB_PRIMDN,  _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_MOD,     RGB_SPI,     RGB_HUI,    RGB_SAI,    RGB_VAI,
       TO(0),     TO(1),       TO(2),        TO(3),     _______,         _______,         _______,          _______,           _______,           RGB_RMOD,    RGB_SPD,     RGB_HUD,    RGB_SAD,    RGB_VAD
       )
 

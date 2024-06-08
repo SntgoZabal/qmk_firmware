@@ -15,16 +15,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 void set_primary_color(uint8_t r, uint8_t g, uint8_t b) {
-    rgblight_setrgb(r, g, b);
+    rgblight_sethsv(r, g, b);
 }
 
 void set_secondary_color(uint8_t r, uint8_t g, uint8_t b) {
-    rgblight_setrgb_at(r, g, b); // Example: Set the secondary color at a specific index
+    rgblight_sethsv_at(r, g, b); // Example: Set the secondary color at a specific index
 }
 
 enum custom_keycodes {
     RGB_PRIMUP = SAFE_RANGE,
-    RGB_PRUMDN,
+    RGB_PRIMDN,
     RGB_SECNUP,
     RGB_SECNDN
 };
@@ -89,4 +89,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TO(0),     TO(1),       TO(2),        TO(3),     _______,         _______,         _______,          _______,           _______,           RGB_RMOD,    RGB_SPD,     RGB_HUD,    RGB_SAD,    RGB_VAD
       )
 
-};`
+};

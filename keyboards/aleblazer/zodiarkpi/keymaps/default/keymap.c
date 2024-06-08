@@ -32,14 +32,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_PRIMUP:
             if (record->event.pressed) {
                 // Switch to custom effect 1
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_EFFECT_my_cool_effect);
+                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_my_cool_effect);
             }
             return false;
 
         case RGB_PRIMDN:
             if (record->event.pressed) {
                 // Switch to custom effect 2
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_EFFECT_MY_COOL_EFFECT2);
+                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_MY_COOL_EFFECT2);
             }
             return false;
     }

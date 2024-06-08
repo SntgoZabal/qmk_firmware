@@ -24,8 +24,8 @@ enum custom_keycodes {
 #ifdef RGB_MATRIX_ENABLE
 
 // Register custom effects
-RGB_MATRIX_EFFECT(my_cool_effect)
-RGB_MATRIX_EFFECT(my_cool_effect2)
+//RGB_MATRIX_EFFECT(my_cool_effect)
+//RGB_MATRIX_EFFECT(my_cool_effect2)
 
 #endif
 

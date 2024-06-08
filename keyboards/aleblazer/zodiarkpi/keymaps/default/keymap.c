@@ -17,13 +17,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 void set_primary_color(uint8_t h, uint8_t s, uint8_t v) {
     rgblight_set_clipping_range(1, 1);
     rgblight_sethsv(h, s, v);
-    rgblight_set_clipping_range(0, RGBLED_NUM);
+    rgblight_set_clipping_range(0, 87);
 }
 
 void set_secondary_color(uint8_t h, uint8_t s, uint8_t v) {
     rgblight_set_clipping_range(1, 1);
     rgblight_sethsv(h, s, v);
-    rgblight_set_clipping_range(0, RGBLED_NUM);
+    rgblight_set_clipping_range(0, 87);
 }
 
 enum custom_keycodes {

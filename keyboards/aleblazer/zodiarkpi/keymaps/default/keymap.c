@@ -21,10 +21,6 @@ enum custom_keycodes {
 
 #ifdef RGB_MATRIX_ENABLE
 
-// Register custom effects
-//RGB_MATRIX_EFFECT(my_cool_effect)
-//RGB_MATRIX_EFFECT(my_cool_effect2)
-
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -32,14 +28,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_PRIMUP:
             if (record->event.pressed) {
                 // Switch to custom effect 1
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_my_cool_effect);
+                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
             }
             return false;
 
         case RGB_PRIMDN:
             if (record->event.pressed) {
                 // Switch to custom effect 2
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_my_cool_effect2);
+                rgb_matrix_mode(RGB_MATRIX_CYCLE_LEFT_RIGHT);
             }
             return false;
     }

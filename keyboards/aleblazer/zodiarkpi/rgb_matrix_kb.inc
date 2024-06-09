@@ -78,6 +78,17 @@ static const led_override_t led_overrides_3[] = {
     {41, {HSV_WHITE}},    // F2 LED in White
     {40, {HSV_WHITE}},    // F3 LED in White
     {38, {HSV_CYAN}},    // F4 LED in Cyan
+    {62, {55,128,255}},    // J LED in Yellow
+    {73, {55,128,255}},    // M LED in Yellow
+    {72, {55,128,255}},    // , LED in Yellow
+    {71, {55,128,255}},    // . LED in Yellow
+    {70, {55,128,255}},    // / LED in Yellow
+    {69, {55,128,255}},    // ' LED in Yellow
+    {81, {55,128,255}},    // LEFT LED in Yellow
+    {82, {55,128,255}},    // UP LED in Yellow
+    {84, {55,128,255}},    // DOWN LED in Yellow
+    {85, {55,128,255}},    // RIGHT LED in Yellow
+    {87, {55,128,255}},    // \ LED in Yellow
     // Add more LEDs and colors as needed
 };
 static const size_t num_led_overrides_3 = sizeof(led_overrides_3) / sizeof(led_overrides_3[0]);

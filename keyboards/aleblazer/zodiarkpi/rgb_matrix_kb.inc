@@ -33,6 +33,18 @@ static const led_override_t led_overrides_1[] = {
     {41, {HSV_CYAN}},    // F2 LED in Cyan
     {40, {HSV_WHITE}},    // F3 LED in White
     {38, {HSV_WHITE}},    // F4 LED in White
+    {54, {HSV_CYAN}},    // U LED in Cyan
+    {55, {HSV_CYAN}},    // I LED in Cyan
+    {56, {HSV_CYAN}},    // O LED in Cyan
+    {66, {HSV_CYAN}},    // J LED in Cyan
+    {65, {HSV_CYAN}},    // K LED in Cyan
+    {63, {HSV_CYAN}},    // L LED in Cyan
+    {70, {HSV_CYAN}},    // M LED in Cyan
+    {71, {HSV_CYAN}},    // , LED in Cyan
+    {72, {HSV_CYAN}},    // . LED in Cyan
+    {85, {HSV_CYAN}},    // LEFT LED in Cyan
+    {84, {45,255,255}},    // UP LED in Cyan
+    {82, {45,255,255}},    // DOWN LED in Cyan
     // Add more LEDs and colors as needed
 };
 

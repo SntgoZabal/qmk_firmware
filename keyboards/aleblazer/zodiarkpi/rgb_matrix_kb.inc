@@ -9,15 +9,14 @@ RGB_MATRIX_EFFECT(SZV_EFFECT_0)
 // Define effects inside the `RGB_MATRIX_CUSTOM_EFFECT_IMPLS` ifdef block
 #ifdef RGB_MATRIX_CUSTOM_EFFECT_IMPLS
 
-// e.g: A simple effect, self-contained within a single method
-static bool my_cool_effect(effect_params_t* params) {
-  RGB_MATRIX_USE_LIMITS(led_min, led_max);
-  for (uint8_t i = led_min; i < led_max; i++) {
-    rgb_matrix_set_color(i, 0xff, 0xff, 0x00);
-  }
-  return led_max < 87;
-  //return true; // Changed to true to ensure the effect runs continuously
+static HSV SZV_EFFECT_0_math(HSV hsv, uint8_t i, uint8_t time) {
+    int16_t s = hsv.s - abs(scale8(g_led_config.point[i].x, 228) + 28 - time) * 8;
+    hsv.s     = scale8(s < 0 ? 0 : s, hsv.s);
+    return hsv;
+}
 
+bool SZV_EFFECT_0(effect_params_t* params) {
+    return effect_runner_i(params, &BAND_SAT_math);
 }
 
 #endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS

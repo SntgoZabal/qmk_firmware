@@ -21,9 +21,10 @@ enum custom_keycodes {
     KB_MODE3
 };
 
-#ifdef RGB_MATRIX_ENABLE
-
-#endif
+void keyboard_post_init_user(void) {
+    // Set the default RGB effect
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {

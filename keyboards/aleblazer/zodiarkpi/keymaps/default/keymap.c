@@ -15,8 +15,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
-    RGB_PRIMUP = SAFE_RANGE,
-    RGB_PRIMDN
+    KB_MODE0 = SAFE_RANGE,
+    KB_MODE1,
+    KB_MODE2,
+    KB_MODE3
 };
 
 #ifdef RGB_MATRIX_ENABLE
@@ -25,15 +27,19 @@ enum custom_keycodes {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case RGB_PRIMUP:
+        case KB_MODE0:
             if (record->event.pressed) {
+                // Switch to layer 1
+                layer_move(0);
                 // Switch to custom effect 1
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
             }
             return false;
 
-        case RGB_PRIMDN:
+        case KB_MODE1:
             if (record->event.pressed) {
+                // Switch to layer 1
+                layer_move(1);
                 // Switch to custom effect 2
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
             }
@@ -71,8 +77,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[3] = LAYOUT(
       QK_BOOT,   KC_F1,       KC_F2,        KC_F3,     KC_F4,      KC_F5,                                                            KC_F6,      KC_F7,       KC_F8,       KC_F9,      KC_F10,     KC_F11,
       _______,   _______,     _______,      _______,   _______,    _______,                                                          _______,    _______,     _______,     _______,    _______,    KC_F12,
-      _______,   RGB_PRIMUP,  _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_TOG,     _______,     _______,    _______,    _______,
-      _______,   RGB_PRIMDN,  _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_MOD,     RGB_SPI,     RGB_HUI,    RGB_SAI,    RGB_VAI,
+      _______,   KB_MODE0,    _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_TOG,     _______,     _______,    _______,    _______,
+      _______,   KB_MODE1,    _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_MOD,     RGB_SPI,     RGB_HUI,    RGB_SAI,    RGB_VAI,
       TO(0),     TO(1),       TO(2),        TO(3),     _______,         _______,         _______,          _______,           _______,           RGB_RMOD,    RGB_SPD,     RGB_HUD,    RGB_SAD,    RGB_VAD
       )
 

@@ -35,7 +35,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_PRIMDN:
             if (record->event.pressed) {
                 // Switch to custom effect 2
-                rgb_matrix_mode(RGB_MATRIX_CYCLE_LEFT_RIGHT);
+                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
             }
             return false;
     }

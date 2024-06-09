@@ -16,7 +16,7 @@ static HSV SZV_EFFECT_0_math(HSV hsv, uint8_t i, uint8_t time) {
 }
 
 bool SZV_EFFECT_0(effect_params_t* params) {
-    return effect_runner_i(params, &BAND_SAT_math);
+    return effect_runner_i(params, &SZV_EFFECT_0_math);
 }
 
 #endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS

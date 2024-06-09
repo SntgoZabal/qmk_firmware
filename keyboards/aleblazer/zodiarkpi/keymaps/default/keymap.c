@@ -29,9 +29,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KB_MODE0:
             if (record->event.pressed) {
-                // Switch to layer 1
+                // Switch to layer 0
                 layer_move(0);
-                // Switch to custom effect 1
+                // Switch to custom effect 0
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
             }
             return false;
@@ -40,7 +40,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 // Switch to layer 1
                 layer_move(1);
-                // Switch to custom effect 2
+                // Switch to custom effect 1
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
             }
             return false;

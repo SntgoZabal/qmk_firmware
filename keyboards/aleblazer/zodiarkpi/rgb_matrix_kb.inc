@@ -38,7 +38,7 @@ static const size_t num_led_overrides_1 = sizeof(led_overrides_1) / sizeof(led_o
 
 // Function to check if an LED is in the override list for SZV_EFFECT_0
 static bool is_led_overridden_0(uint8_t i, HSV* color) {
-    for (size_t j = 0; j < num_led_overrides; j++) {
+    for (size_t j = 0; j < num_led_overrides_0; j++) {
         if (led_overrides_0[j].index == i) {
             *color = led_overrides_0[j].color;
             return true;

@@ -17,6 +17,9 @@ typedef struct {
 // Define the list of LEDs to override and their static colors
 static const led_override_t led_overrides[] = {
     {43, {HSV_CYAN}},    // F1 LED in Cyan
+    {41, {HSV_WHITE}},    // F2 LED in White
+    {40, {HSV_WHITE}},    // F3 LED in White
+    {38, {HSV_WHITE}},    // F4 LED in White
     // Add more LEDs and colors as needed
 };
 static const size_t num_led_overrides = sizeof(led_overrides) / sizeof(led_overrides[0]);

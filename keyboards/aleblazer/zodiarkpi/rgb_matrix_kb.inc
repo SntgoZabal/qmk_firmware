@@ -43,9 +43,9 @@ static const led_override_t led_overrides_1[] = {
     {72, {HSV_CYAN}},    // , LED in Cyan
     {71, {HSV_CYAN}},    // . LED in Cyan
     {81, {HSV_CYAN}},    // LEFT LED in Cyan
-    {82, {30,170,255}},    // UP LED in Yellow
-    {84, {25,255,255}},    // DOWN LED in Yellow
-    {58, {30,190,255}},    // Y LED in Yellow
+    {82, {25,210,255}},    // UP LED in Yellow
+    {84, {25,210,255}},    // DOWN LED in Yellow
+    {58, {25,210,255}},    // Y LED in Yellow
     {62, {HSV_RED}},    // H LED in Yellow
     {24, {25,210,255}},    // CAPS LED in Yellow
     // Add more LEDs and colors as needed
@@ -69,11 +69,11 @@ static const led_override_t led_overrides_2[] = {
     {72, {HSV_CYAN}},    // , LED in Cyan
     {71, {HSV_CYAN}},    // . LED in Cyan
     {81, {HSV_CYAN}},    // LEFT LED in Cyan
-    {82, {55,128,255}},    // UP LED in Yellow
-    {84, {55,128,255}},    // DOWN LED in Yellow
-    {58, {55,128,255}},    // Y LED in Yellow
-    {62, {55,128,255}},    // H LED in Yellow
-    {24, {55,128,255}},    // CAPS LED in Yellow
+    {82, {25,210,255}},    // UP LED in Yellow
+    {84, {25,210,255}},    // DOWN LED in Yellow
+    {58, {25,210,255}},    // Y LED in Yellow
+    {62, {25,210,255}},    // H LED in Yellow
+    {24, {25,210,255}},    // CAPS LED in Yellow
     // Add more LEDs and colors as needed
 };
 static const size_t num_led_overrides_2 = sizeof(led_overrides_2) / sizeof(led_overrides_2[0]);
@@ -84,17 +84,17 @@ static const led_override_t led_overrides_3[] = {
     {41, {HSV_WHITE}},    // F2 LED in White
     {40, {HSV_WHITE}},    // F3 LED in White
     {38, {HSV_CYAN}},    // F4 LED in Cyan
-    {62, {55,128,255}},    // J LED in Yellow
-    {73, {55,128,255}},    // M LED in Yellow
-    {72, {55,128,255}},    // , LED in Yellow
-    {71, {55,128,255}},    // . LED in Yellow
-    {70, {55,128,255}},    // / LED in Yellow
-    {69, {55,128,255}},    // ' LED in Yellow
-    {81, {55,128,255}},    // LEFT LED in Yellow
-    {82, {55,128,255}},    // UP LED in Yellow
-    {84, {55,128,255}},    // DOWN LED in Yellow
-    {85, {55,128,255}},    // RIGHT LED in Yellow
-    {87, {55,128,255}},    // \ LED in Yellow
+    {62, {25,210,255}},    // J LED in Yellow
+    {73, {25,210,255}},    // M LED in Yellow
+    {72, {25,210,255}},    // , LED in Yellow
+    {71, {25,210,255}},    // . LED in Yellow
+    {70, {25,210,255}},    // / LED in Yellow
+    {69, {25,210,255}},    // ' LED in Yellow
+    {81, {25,210,255}},    // LEFT LED in Yellow
+    {82, {25,210,255}},    // UP LED in Yellow
+    {84, {25,210,255}},    // DOWN LED in Yellow
+    {85, {25,210,255}},    // RIGHT LED in Yellow
+    {87, {25,210,255}},    // \ LED in Yellow
     {8, {HSV_RED}},    // ESC LED in Red
     {58, {HSV_RED}},    // Y LED in Red
     // Add more LEDs and colors as needed

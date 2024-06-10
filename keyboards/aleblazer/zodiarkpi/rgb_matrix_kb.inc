@@ -43,11 +43,11 @@ static const led_override_t led_overrides_1[] = {
     {72, {HSV_CYAN}},    // , LED in Cyan
     {71, {HSV_CYAN}},    // . LED in Cyan
     {81, {HSV_CYAN}},    // LEFT LED in Cyan
-    {82, {30,128,255}},    // UP LED in Yellow
-    {84, {30,128,255}},    // DOWN LED in Yellow
-    {58, {30,128,255}},    // Y LED in Yellow
-    {63, {30,128,255}},    // H LED in Yellow
-    {24, {30,128,255}},    // CAPS LED in Yellow
+    {82, {30,170,255}},    // UP LED in Yellow
+    {84, {30,170,255}},    // DOWN LED in Yellow
+    {58, {30,170,255}},    // Y LED in Yellow
+    {62, {30,170,255}},    // H LED in Yellow
+    {24, {30,170,255}},    // CAPS LED in Yellow
     // Add more LEDs and colors as needed
 };
 
@@ -72,7 +72,7 @@ static const led_override_t led_overrides_2[] = {
     {82, {55,128,255}},    // UP LED in Yellow
     {84, {55,128,255}},    // DOWN LED in Yellow
     {58, {55,128,255}},    // Y LED in Yellow
-    {63, {55,128,255}},    // H LED in Yellow
+    {62, {55,128,255}},    // H LED in Yellow
     {24, {55,128,255}},    // CAPS LED in Yellow
     // Add more LEDs and colors as needed
 };

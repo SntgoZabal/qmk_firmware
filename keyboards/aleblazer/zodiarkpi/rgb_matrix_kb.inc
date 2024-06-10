@@ -46,7 +46,7 @@ static const led_override_t led_overrides_1[] = {
     {82, {25,210,255}},    // UP LED in Yellow
     {84, {25,210,255}},    // DOWN LED in Yellow
     {58, {25,210,255}},    // Y LED in Yellow
-    {61, {HSV_RED}},    // H LED in Yellow
+    {61, {25,210,255}},    // H LED in Yellow
     {24, {25,210,255}},    // CAPS LED in Yellow
     // Add more LEDs and colors as needed
 };

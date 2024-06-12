@@ -71,7 +71,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         
         case KB_ACCENT:
             if (record->event.pressed) {
-            send_unicode_string("a");
+            send_unicode_string("á");
             }
             return false;
         

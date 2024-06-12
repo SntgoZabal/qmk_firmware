@@ -29,8 +29,8 @@ void keyboard_post_init_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static bool accent_tilde_mode = false;
-    static uint16_t vowel_timer;
+    //static bool accent_tilde_mode = false;
+    //static uint16_t vowel_timer;
 
     switch (keycode) {
         case KB_MODE0:

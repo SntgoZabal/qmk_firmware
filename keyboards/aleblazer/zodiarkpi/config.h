@@ -44,6 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // The following line is for unicode input methods for windows
 #define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE
+#define TAPPING_TERM 500
 
 // RGB Matrix Config
 #ifdef RGB_MATRIX_ENABLE

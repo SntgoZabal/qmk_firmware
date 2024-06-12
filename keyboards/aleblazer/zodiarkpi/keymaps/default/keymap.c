@@ -29,7 +29,7 @@ void keyboard_post_init_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool accent_tilde_mode = false;
-    bool shift_pressed = (get_mods() & MOD_BIT(KC_LSFT)) || (get_mods() & MOD_BIT(KC_RSFT));
+    static uint16_t vowel_timer;
 
     switch (keycode) {
         case KB_MODE0:
@@ -67,56 +67,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_3);
             }
             return false;
+        
         case KB_ACCENT:
             if (record->event.pressed) {
-                accent_tilde_mode = true;
-                tap_code16(0x00E1); // á
+                if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+                    // Shift key is held, set accent_tilde_mode to true for tilde
+                    accent_tilde_mode = true;
+                } else {
+                    // Shift key is not held, set accent_tilde_mode to false for accent
+                    accent_tilde_mode = false;
+                }
+                vowel_timer = timer_read();
+            } else {
+                // Key released
+                if (timer_elapsed(vowel_timer) < TAPPING_TERM) {
+                    // If the key was tapped quickly, toggle the accent/tilde mode
+                    accent_tilde_mode = !accent_tilde_mode;
+                }
             }
             return false;
+
         default:
-            if (accent_tilde_mode) {
-                accent_tilde_mode = false;
-                if (record->event.pressed) {
-                    if (shift_pressed) {
-                        switch (keycode) {
-                            case KC_A:
-                                tap_code16(0x00E3); // ã
-                                return false;
-                            case KC_E:
-                                tap_code16(0x1EBD); // ẽ
-                                return false;
-                            case KC_I:
-                                tap_code16(0x0129); // ĩ
-                                return false;
-                            case KC_O:
-                                tap_code16(0x00F5); // õ
-                                return false;
-                            case KC_U:
-                                tap_code16(0x0169); // ũ
-                                return false;
-                        }
-                    } else {
-                        switch (keycode) {
-                            case KC_A:
-                                tap_code16(0x00E1); // á
-                                return false;
-                            case KC_E:
-                                tap_code16(0x00E9); // é
-                                return false;
-                            case KC_I:
-                                tap_code16(0x00ED); // í
-                                return false;
-                            case KC_O:
-                                tap_code16(0x00F3); // ó
-                                return false;
-                            case KC_U:
-                                tap_code16(0x00FA); // ú
-                                return false;
-                        }
-                    }
+            if (!record->event.pressed && accent_tilde_mode) {
+                // Check if the key is a vowel and apply the accent/tilde
+                switch (keycode) {
+                    case KC_A:
+                        tap_code16( accent_tilde_mode ? KC_NTIL : KC_ACUT);
+                        return false;
+                    case KC_E:
+                        tap_code16( accent_tilde_mode ? KC_NTIL : KC_ACUT);
+                        return false;
+                    case KC_I:
+                        tap_code16( accent_tilde_mode ? KC_NTIL : KC_ACUT);
+                        return false;
+                    case KC_O:
+                        tap_code16( accent_tilde_mode ? KC_NTIL : KC_ACUT);
+                        return false;
+                    case KC_U:
+                        tap_code16( accent_tilde_mode ? KC_NTIL : KC_ACUT);
+                        return false;
                 }
             }
             break;
+            
     }
     return true;
 }

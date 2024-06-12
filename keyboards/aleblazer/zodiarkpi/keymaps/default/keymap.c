@@ -95,37 +95,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     if (accent_tilde_mode) {
                         switch (keycode) {
                             case KC_A:
-                                send_unicode_hex_string("00E3");  // ã
+                                register_unicode(0x00E3);  // ã
                                 return false;
                             case KC_E:
-                                send_unicode_hex_string("1EBD");  // ẽ
+                                register_unicode(0x1EBD);  // ẽ
                                 return false;
                             case KC_I:
-                                send_unicode_hex_string("0129");  // ĩ
+                                register_unicode(0x0129);  // ĩ
                                 return false;
                             case KC_O:
-                                send_unicode_hex_string("00F5");  // õ
+                                register_unicode(0x00F5);  // õ
                                 return false;
                             case KC_U:
-                                send_unicode_hex_string("0169");  // ũ
+                                register_unicode(0x0169);  // ũ
                                 return false;
                         }
                     } else {
                         switch (keycode) {
                             case KC_A:
-                                send_unicode_hex_string("00E1");  // á
+                                register_unicode(0x00E1);  // á
                                 return false;
                             case KC_E:
-                                send_unicode_hex_string("00E9");  // é
+                                register_unicode(0x00E9);  // é
                                 return false;
                             case KC_I:
-                                send_unicode_hex_string("00ED");  // í
+                                register_unicode(0x00ED);  // í
                                 return false;
                             case KC_O:
-                                send_unicode_hex_string("00F3");  // ó
+                                register_unicode(0x00F3);  // ó
                                 return false;
                             case KC_U:
-                                send_unicode_hex_string("00FA");  // ú
+                                register_unicode(0x00FA);  // ú
                                 return false;
                         }
                     }

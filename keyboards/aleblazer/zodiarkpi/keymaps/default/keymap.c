@@ -29,8 +29,8 @@ void keyboard_post_init_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    //static bool accent_tilde_mode = false;
-    //static uint16_t vowel_timer;
+    static bool accent_tilde_mode = false;
+    static uint16_t vowel_timer;
 
     switch (keycode) {
         case KB_MODE0:
@@ -71,9 +71,61 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         
         case KB_ACCENT:
             if (record->event.pressed) {
-            send_unicode_string("á");
+                if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+                    // Shift key is held, set accent_tilde_mode to true for tilde
+                    accent_tilde_mode = true;
+                } else {
+                    // Shift key is not held, set accent_tilde_mode to false for accent
+                    accent_tilde_mode = false;
+                }
+                vowel_timer = timer_read();
             }
             return false;
+        
+        default:
+            if (!record->event.pressed) {
+                if (timer_elapsed(vowel_timer) < TAPPING_TERM) {
+                    // Check if the key is a vowel and apply the accent/tilde
+                    if (accent_tilde_mode) {
+                        switch (keycode) {
+                            case KC_A:
+                                send_unicode_string("ã");
+                                return false;
+                            case KC_E:
+                                send_unicode_string("ẽ");
+                                return false;
+                            case KC_I:
+                                send_unicode_string("ĩ");
+                                return false;
+                            case KC_O:
+                                send_unicode_string("õ");
+                                return false;
+                            case KC_U:
+                                send_unicode_string("ũ");
+                                return false;
+                        }
+                    } else {
+                        switch (keycode) {
+                            case KC_A:
+                                send_unicode_string("á");
+                                return false;
+                            case KC_E:
+                                send_unicode_string("é");
+                                return false;
+                            case KC_I:
+                                send_unicode_string("í");
+                                return false;
+                            case KC_O:
+                                send_unicode_string("ó");
+                                return false;
+                            case KC_U:
+                                send_unicode_string("ú");
+                                return false;
+                        }
+                    }
+                }
+            }
+            break;
         
     }
     return true;

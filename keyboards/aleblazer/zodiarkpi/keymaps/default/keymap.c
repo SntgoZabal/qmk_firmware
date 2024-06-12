@@ -87,41 +87,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (timer_elapsed(vowel_timer) < TAPPING_TERM) {
                     // Check if the key is a vowel and apply the accent/tilde
                     if (accent_tilde_mode) {
-                        switch (keycode) {
-                            case KC_A:
-                                send_unicode_string("ã");
-                                return false;
-                            case KC_E:
-                                send_unicode_string("ẽ");
-                                return false;
-                            case KC_I:
-                                send_unicode_string("ĩ");
-                                return false;
-                            case KC_O:
-                                send_unicode_string("õ");
-                                return false;
-                            case KC_U:
-                                send_unicode_string("ũ");
-                                return false;
-                        }
+                        send_unicode_string("ã");
                     } else {
-                        switch (keycode) {
-                            case KC_A:
-                                send_unicode_string("á");
-                                return false;
-                            case KC_E:
-                                send_unicode_string("é");
-                                return false;
-                            case KC_I:
-                                send_unicode_string("í");
-                                return false;
-                            case KC_O:
-                                send_unicode_string("ó");
-                                return false;
-                            case KC_U:
-                                send_unicode_string("ú");
-                                return false;
-                        }
+                        send_unicode_string("á");
                     }
                 }
             }

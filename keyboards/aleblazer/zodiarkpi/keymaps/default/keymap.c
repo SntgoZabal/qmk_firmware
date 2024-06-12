@@ -13,6 +13,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
+#include "unicode.h"
 
 enum custom_keycodes {
     KB_MODE0 = SAFE_RANGE,

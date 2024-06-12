@@ -70,6 +70,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KB_ACCENT:
             if (record->event.pressed) {
                 accent_tilde_mode = true;
+                tap_code16(0x00E3); // ã
             }
             return false;
         default:

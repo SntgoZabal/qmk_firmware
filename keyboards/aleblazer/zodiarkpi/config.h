@@ -42,6 +42,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define I2C1_SCL_PIN GP17
 // #define I2C1_SDA_PIN GP16
 
+// The following line is for unicode input methods for windows
+#define UNICODE_SELECTED_MODES UC_WIN
+
 // RGB Matrix Config
 #ifdef RGB_MATRIX_ENABLE
      /* RGB Defines */

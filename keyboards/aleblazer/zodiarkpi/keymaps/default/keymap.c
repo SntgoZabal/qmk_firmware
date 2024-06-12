@@ -18,7 +18,8 @@ enum custom_keycodes {
     KB_MODE0 = SAFE_RANGE,
     KB_MODE1,
     KB_MODE2,
-    KB_MODE3
+    KB_MODE3,
+    KB_ACCENT
 };
 
 void keyboard_post_init_user(void) {
@@ -27,6 +28,9 @@ void keyboard_post_init_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static bool accent_tilde_mode = false;
+    bool shift_pressed = (get_mods() & MOD_BIT(KC_LSFT)) || (get_mods() & MOD_BIT(KC_RSFT));
+
     switch (keycode) {
         case KB_MODE0:
             if (record->event.pressed) {
@@ -63,6 +67,55 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_3);
             }
             return false;
+        case KB_ACCENT:
+            if (record->event.pressed) {
+                accent_tilde_mode = true;
+            }
+            return false;
+        default:
+            if (accent_tilde_mode) {
+                accent_tilde_mode = false;
+                if (record->event.pressed) {
+                    if (shift_pressed) {
+                        switch (keycode) {
+                            case KC_A:
+                                tap_code16(0x00E3); // ã
+                                return false;
+                            case KC_E:
+                                tap_code16(0x1EBD); // ẽ
+                                return false;
+                            case KC_I:
+                                tap_code16(0x0129); // ĩ
+                                return false;
+                            case KC_O:
+                                tap_code16(0x00F5); // õ
+                                return false;
+                            case KC_U:
+                                tap_code16(0x0169); // ũ
+                                return false;
+                        }
+                    } else {
+                        switch (keycode) {
+                            case KC_A:
+                                tap_code16(0x00E1); // á
+                                return false;
+                            case KC_E:
+                                tap_code16(0x00E9); // é
+                                return false;
+                            case KC_I:
+                                tap_code16(0x00ED); // í
+                                return false;
+                            case KC_O:
+                                tap_code16(0x00F3); // ó
+                                return false;
+                            case KC_U:
+                                tap_code16(0x00FA); // ú
+                                return false;
+                        }
+                    }
+                }
+            }
+            break;
     }
     return true;
 }
@@ -74,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_MPLY,   KC_Q,        KC_W,         KC_E,      KC_R,       KC_T,                                                             KC_Y,       KC_U,        KC_I,        KC_O,       KC_P,       KC_LBRC,
       KC_PSCR,   KC_A,        KC_S,         KC_D,      KC_F,       KC_G,     KC_RSFT,    KC_MUTE,          RGB_TOG,     KC_ENT,      KC_H,       KC_J,        KC_K,        KC_L,       KC_SCLN,    KC_RBRC,
       KC_LSFT,   KC_Z,        KC_X,         KC_C,      KC_V,       KC_B,     KC_LCTL,    KC_LALT,          KC_EQL,      KC_MINS,     KC_N,       KC_M,        KC_COMM,     KC_DOT,     KC_SLSH,    KC_QUOT,
-      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  KC_GRV,          KC_TAB,          KC_SLEP,          KC_LGUI,           KC_SPC,            KC_LEFT,     KC_UP,       KC_DOWN,    KC_RGHT,    KC_BSLS
+      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  KB_ACCENT,          KC_TAB,          KC_SLEP,          KC_LGUI,           KC_SPC,            KC_LEFT,     KC_UP,       KC_DOWN,    KC_RGHT,    KC_BSLS
     ),
 
 	[1] = LAYOUT(

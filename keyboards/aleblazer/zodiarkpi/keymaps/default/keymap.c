@@ -87,10 +87,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (timer_elapsed(vowel_timer) < TAPPING_TERM) {
                     // Check if the key is a vowel and apply the accent/tilde
                     if (accent_tilde_mode) {
-                        send_unicode_string("ã");
-                        send_unicode_hex_string("0303");
+                        //send_unicode_string("ã");
+                        send_unicode_hex_string(0303);
                     } else {
-                        send_unicode_string("á");
+                        //send_unicode_string("á");
                         send_unicode_hex_string(0301);
                     }
                 }

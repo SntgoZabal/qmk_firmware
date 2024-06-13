@@ -88,10 +88,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     // Check if the key is a vowel and apply the accent/tilde
                     if (accent_tilde_mode) {
                         //send_unicode_string("ã");
-                        register_hex_unicode(0x0303);
+                        register_unicode(0x0303);
                     } else {
                         //send_unicode_string("á");
-                        register_hex_unicode(0x0301);
+                        register_unicode(0x0301);
                     }
                 }
             }

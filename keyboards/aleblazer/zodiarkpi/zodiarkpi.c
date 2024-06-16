@@ -233,11 +233,11 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
          }
 
          if (is_keyboard_left()) {
-         image = qp_load_image_mem(gfx_ZodiarkPiLogoGC);
+         image = qp_load_image_mem(gfx_LogotipoKFT2023_2);
           } 
      //If using pointing device on right side, comment out following 3 lines
          else {
-         image = qp_load_image_mem(gfx_ZodiarkPiLogoGC);
+         image = qp_load_image_mem(gfx_LogotipoKFT2023_2);
      }
     // ##end GC9A01 screeen support
 

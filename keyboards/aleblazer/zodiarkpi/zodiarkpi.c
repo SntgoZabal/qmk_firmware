@@ -191,6 +191,7 @@ void keyboard_post_init_user(void) {
   debug_matrix=true;
   debug_keyboard=true;
   debug_mouse=true;
+  rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
 }
 
 uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {

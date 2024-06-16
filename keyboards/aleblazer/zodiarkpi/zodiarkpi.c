@@ -176,6 +176,7 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
 #include "images/ZodiarkPiLogoGC.qgf.c"
 #include "images/ZodiarkPiLogo2Green.qgf.c"
 #include "images/ZodiarkPiLogoSTpink.qgf.c"
+#include "images/LogotipoKFT2023_2.qgf.c"
 
 static painter_device_t display;
 static painter_image_handle_t image;

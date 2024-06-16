@@ -247,9 +247,9 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
             qp_drawimage(display, 0, 0, image);
         } 
     // If using pointing device on right side, comment out following 3 lines
-        // else {
-        //     qp_drawimage(display, 0, 0, image);
-        // }
+         else {
+             qp_drawimage(display, 0, 0, image);
+         }
     }
 
 

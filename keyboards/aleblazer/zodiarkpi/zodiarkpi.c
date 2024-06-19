@@ -142,9 +142,11 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) { /* Second encoder */
         if (clockwise) {
-            rgblight_decrease_val();
+            //rgblight_decrease_val();
+            tap_code16(LCTL(KC_PPLS));
         } else {
-            rgblight_increase_val();
+            //rgblight_increase_val();
+            tap_code16(LCTL(KC_PMNS));
         }
 
     } else if (index == 2) { /* Third encoder */

@@ -264,4 +264,32 @@ void keyboard_post_init_kb(void)
     debug_enable=true;
     defer_exec(3000, deferred_init, NULL);
 }
+
+// Function to turn off the screen
+void turn_off_screen(void) {
+    qp_power(display, false);
+}
+
+// Function to turn on the screen
+void turn_on_screen(void) {
+    qp_power(display, true);
+    if (is_keyboard_left()) {
+        qp_init(display, QP_ROTATION_0);
+    } else {
+        qp_init(display, QP_ROTATION_0);
+    }
+    qp_drawimage(display, 0, 0, image);
+}
+
+// Hook for suspend event
+void suspend_power_down_user(void) {
+    turn_off_screen();
+}
+
+// Hook for wakeup event
+void suspend_wakeup_init_user(void) {
+    turn_on_screen();
+}
+
+
 #endif

@@ -267,7 +267,11 @@ void keyboard_post_init_kb(void)
 
 // Function to turn off the screen
 void turn_off_screen(void) {
-    qp_power(display, false);
+    if (is_keyboard_left()) {
+        qp_power(display, false);
+    } else {
+        qp_power(display, false);
+    }
 }
 
 // Function to turn on the screen

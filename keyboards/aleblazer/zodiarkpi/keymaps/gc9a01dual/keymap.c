@@ -17,8 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "quantum.h"
 #include "print.h"
 
-#ifdef QUANTUM_PAINTER_ENABLE
-
 #include "images/LogotipoKFT2023_1.qgf.c"
 #include "images/LogotipoKFT2023_2.qgf.c"
 #include "images/LogotipoKFT2023_3.qgf.c"
@@ -32,10 +30,17 @@ static painter_image_handle_t image2;
 static painter_image_handle_t image3;
 static painter_image_handle_t current_image;
 
-image0 = qp_load_image_mem(gfx_LogotipoKFT2023_1);
-image1 = qp_load_image_mem(gfx_LogotipoKFT2023_2);
-image2 = qp_load_image_mem(gfx_LogotipoKFT2023_3);
-image3 = qp_load_image_mem(gfx_LogotipoKFT2023_4);
+uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
+
+    if (is_keyboard_left()) {
+    image0 = qp_load_image_mem(gfx_LogotipoKFT2023_1);
+    image1 = qp_load_image_mem(gfx_LogotipoKFT2023_2);
+    image2 = qp_load_image_mem(gfx_LogotipoKFT2023_3);
+    image3 = qp_load_image_mem(gfx_LogotipoKFT2023_4);
+    }
+
+    return(0);
+}
 
 enum custom_keycodes {
     KB_MODE0 = SAFE_RANGE,

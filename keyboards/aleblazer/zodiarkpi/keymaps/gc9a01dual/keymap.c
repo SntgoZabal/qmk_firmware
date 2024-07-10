@@ -41,6 +41,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_move(0);
                 // Switch to custom effect 0
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
+                // Change image
+                current_image = image0;
+                qp_drawimage(display, 0, 0, current_image);
             }
             return false;
 
@@ -50,6 +53,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_move(1);
                 // Switch to custom effect 1
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
+                // Change image
+                current_image = image1;
+                qp_drawimage(display, 0, 0, current_image);
             }
             return false;
         
@@ -59,6 +65,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_move(2);
                 // Switch to custom effect 2
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_2);
+                // Change image
+                current_image = image2;
+                qp_drawimage(display, 0, 0, current_image);
             }
             return false;
         
@@ -68,6 +77,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_move(3);
                 // Switch to custom effect 3
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_3);
+                // Change image
+                current_image = image3;
+                qp_drawimage(display, 0, 0, current_image);
             }
             return false;
         

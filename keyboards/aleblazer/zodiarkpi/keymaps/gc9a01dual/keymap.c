@@ -14,33 +14,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 #include "unicode.h"
-#include "quantum.h"
-#include "print.h"
-
-#include "images/LogotipoKFT2023_1.qgf.c"
-#include "images/LogotipoKFT2023_2.qgf.c"
-#include "images/LogotipoKFT2023_3.qgf.c"
-#include "images/LogotipoKFT2023_4.qgf.c"
-
-static painter_device_t display;
-//static painter_image_handle_t image;
-static painter_image_handle_t image0;
-static painter_image_handle_t image1;
-static painter_image_handle_t image2;
-static painter_image_handle_t image3;
-static painter_image_handle_t current_image;
-
-uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
-
-    if (is_keyboard_left()) {
-    image0 = qp_load_image_mem(gfx_LogotipoKFT2023_1);
-    image1 = qp_load_image_mem(gfx_LogotipoKFT2023_2);
-    image2 = qp_load_image_mem(gfx_LogotipoKFT2023_3);
-    image3 = qp_load_image_mem(gfx_LogotipoKFT2023_4);
-    }
-
-    return(0);
-}
 
 enum custom_keycodes {
     KB_MODE0 = SAFE_RANGE,
@@ -69,8 +42,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to custom effect 0
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
                 // Change image
-                current_image = image0;
-                qp_drawimage(display, 0, 0, current_image);
+                //current_image = image0;
+                //qp_drawimage(display, 0, 0, current_image);
             }
             return false;
 
@@ -81,8 +54,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to custom effect 1
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
                 // Change image
-                current_image = image1;
-                qp_drawimage(display, 0, 0, current_image);
+                //current_image = image1;
+                //qp_drawimage(display, 0, 0, current_image);
             }
             return false;
         
@@ -93,8 +66,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to custom effect 2
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_2);
                 // Change image
-                current_image = image2;
-                qp_drawimage(display, 0, 0, current_image);
+                //current_image = image2;
+                //qp_drawimage(display, 0, 0, current_image);
             }
             return false;
         
@@ -105,8 +78,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to custom effect 3
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_3);
                 // Change image
-                current_image = image3;
-                qp_drawimage(display, 0, 0, current_image);
+                //current_image = image3;
+                //qp_drawimage(display, 0, 0, current_image);
             }
             return false;
         

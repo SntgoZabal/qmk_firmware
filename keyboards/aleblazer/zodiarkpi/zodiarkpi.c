@@ -181,12 +181,12 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
 #include "images/LogotipoKFT2023_4.qgf.c"
 
 static painter_device_t display;
-static painter_image_handle_t image;
-//static painter_image_handle_t image0;
-//static painter_image_handle_t image1;
-//static painter_image_handle_t image2;
-//static painter_image_handle_t image3;
-//static painter_image_handle_t current_image;
+//static painter_image_handle_t image;
+static painter_image_handle_t image0;
+static painter_image_handle_t image1;
+static painter_image_handle_t image2;
+static painter_image_handle_t image3;
+static painter_image_handle_t current_image;
 
 // st7789 enable, comment out the following line if not using a st7789
 //painter_device_t qp_st7789_make_spi_device(uint16_t panel_width, uint16_t panel_height, pin_t chip_select_pin, pin_t dc_pin, pin_t reset_pin, uint16_t spi_divisor, int spi_mode);
@@ -241,7 +241,10 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
          //}
 
          if (is_keyboard_left()) {
-         image = qp_load_image_mem(gfx_LogotipoKFT2023_1);
+         image0 = qp_load_image_mem(gfx_LogotipoKFT2023_1);
+         image1 = qp_load_image_mem(gfx_LogotipoKFT2023_2);
+         image2 = qp_load_image_mem(gfx_LogotipoKFT2023_3);
+         image3 = qp_load_image_mem(gfx_LogotipoKFT2023_4);
           } 
      //If using pointing device on right side, comment out following 3 lines
          //else {
@@ -249,16 +252,14 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
          //}
     // ##end GC9A01 screeen support
 
-    if (image != NULL) {
-        print("image was not null\n");
-        if (is_keyboard_left()) {
-            qp_drawimage(display, 0, 0, image);
-        } 
+    if (is_keyboard_left()) {
+        current_image = image0;
+        qp_drawimage(display, 0, 0, current_image);
+    } 
     // If using pointing device on right side, comment out following 3 lines
-         //else {
-         //    qp_drawimage(display, 0, 0, image);
-         //}
-    }
+    //else {
+    //    qp_drawimage(display, 0, 0, image);
+    //}
 
 
     return(0);
@@ -286,7 +287,7 @@ void turn_on_screen(void) {
     qp_power(display, true);
     if (is_keyboard_left()) {
         qp_init(display, QP_ROTATION_0);
-        qp_drawimage(display, 0, 0, image);
+        qp_drawimage(display, 0, 0, current_image);
     }
 // If using pointing device on right side, comment out following 3 lines
     //else {

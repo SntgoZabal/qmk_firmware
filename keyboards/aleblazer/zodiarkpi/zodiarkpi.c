@@ -181,7 +181,11 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
 #include "images/LogotipoKFT2023_4.qgf.c"
 
 static painter_device_t display;
-static painter_image_handle_t image;
+static painter_image_handle_t image0;
+static painter_image_handle_t image1;
+static painter_image_handle_t image2;
+static painter_image_handle_t image3;
+static painter_image_handle_t current_image;
 
 // st7789 enable, comment out the following line if not using a st7789
 //painter_device_t qp_st7789_make_spi_device(uint16_t panel_width, uint16_t panel_height, pin_t chip_select_pin, pin_t dc_pin, pin_t reset_pin, uint16_t spi_divisor, int spi_mode);
@@ -231,17 +235,17 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
          qp_init(display, QP_ROTATION_0);
          } 
      //If using pointing device on right side, comment out following 3 lines
-         else {
-         qp_init(display, QP_ROTATION_0);
-         }
+         //else {
+         //qp_init(display, QP_ROTATION_0);
+         //}
 
          if (is_keyboard_left()) {
          image = qp_load_image_mem(gfx_LogotipoKFT2023_1);
           } 
      //If using pointing device on right side, comment out following 3 lines
-         else {
-         image = qp_load_image_mem(gfx_LogotipoKFT2023_1);
-     }
+         //else {
+         //image = qp_load_image_mem(gfx_LogotipoKFT2023_1);
+         //}
     // ##end GC9A01 screeen support
 
     if (image != NULL) {
@@ -250,9 +254,9 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
             qp_drawimage(display, 0, 0, image);
         } 
     // If using pointing device on right side, comment out following 3 lines
-         else {
-             qp_drawimage(display, 0, 0, image);
-         }
+         //else {
+         //    qp_drawimage(display, 0, 0, image);
+         //}
     }
 
 
@@ -269,9 +273,11 @@ void keyboard_post_init_kb(void)
 void turn_off_screen(void) {
     if (is_keyboard_left()) {
         qp_power(display, false);
-    } else {
-        qp_power(display, false);
     }
+// If using pointing device on right side, comment out following 3 lines
+    //else {
+    //    qp_power(display, false);
+    //}
 }
 
 // Function to turn on the screen
@@ -279,20 +285,36 @@ void turn_on_screen(void) {
     qp_power(display, true);
     if (is_keyboard_left()) {
         qp_init(display, QP_ROTATION_0);
-    } else {
-        qp_init(display, QP_ROTATION_0);
+        qp_drawimage(display, 0, 0, image);
     }
-    qp_drawimage(display, 0, 0, image);
+// If using pointing device on right side, comment out following 3 lines
+    //else {
+    //    qp_init(display, QP_ROTATION_0);
+    //    qp_drawimage(display, 0, 0, image);
+    //}
+    
 }
 
 // Hook for suspend event
 void suspend_power_down_user(void) {
-    turn_off_screen();
+    if (is_keyboard_left()) {
+        turn_off_screen();
+    }
+// If using pointing device on right side, comment out following 3 lines
+    //else {
+    //    turn_off_screen();
+    //}
 }
 
 // Hook for wakeup event
 void suspend_wakeup_init_user(void) {
-    turn_on_screen();
+    if (is_keyboard_left()) {
+        turn_on_screen();
+    }
+// If using pointing device on right side, comment out following 3 lines
+    //else {
+    //    turn_on_screen();
+    //}
 }
 
 

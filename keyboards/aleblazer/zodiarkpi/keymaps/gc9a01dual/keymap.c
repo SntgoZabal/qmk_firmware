@@ -14,6 +14,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 #include "unicode.h"
+#include "quantum.h"
+#include "print.h"
 
 #ifdef QUANTUM_PAINTER_ENABLE
 

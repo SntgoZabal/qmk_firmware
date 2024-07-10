@@ -15,6 +15,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include "unicode.h"
 
+#ifdef QUANTUM_PAINTER_ENABLE
+
+#include "images/LogotipoKFT2023_1.qgf.c"
+#include "images/LogotipoKFT2023_2.qgf.c"
+#include "images/LogotipoKFT2023_3.qgf.c"
+#include "images/LogotipoKFT2023_4.qgf.c"
+
+static painter_device_t display;
+//static painter_image_handle_t image;
+static painter_image_handle_t image0;
+static painter_image_handle_t image1;
+static painter_image_handle_t image2;
+static painter_image_handle_t image3;
+static painter_image_handle_t current_image;
+
+image0 = qp_load_image_mem(gfx_LogotipoKFT2023_1);
+image1 = qp_load_image_mem(gfx_LogotipoKFT2023_2);
+image2 = qp_load_image_mem(gfx_LogotipoKFT2023_3);
+image3 = qp_load_image_mem(gfx_LogotipoKFT2023_4);
+
 enum custom_keycodes {
     KB_MODE0 = SAFE_RANGE,
     KB_MODE1,

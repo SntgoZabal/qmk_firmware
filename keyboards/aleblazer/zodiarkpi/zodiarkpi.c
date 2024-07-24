@@ -175,10 +175,10 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
 
 #ifdef QUANTUM_PAINTER_ENABLE
 
-#include "images/LogotipoKFT2023_1.qgf.c"
-#include "images/LogotipoKFT2023_2.qgf.c"
-#include "images/LogotipoKFT2023_3.qgf.c"
-#include "images/LogotipoKFT2023_4.qgf.c"
+#include "images/KFTLogo1.qgf.c"
+#include "images/KFTLogo2.qgf.c"
+#include "images/KFTLogo3.qgf.c"
+#include "images/KFTLogo4.qgf.c"
 
 static painter_device_t display;
 //static painter_image_handle_t image;
@@ -241,10 +241,10 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
          //}
 
          if (is_keyboard_left()) {
-         image0 = qp_load_image_mem(gfx_LogotipoKFT2023_1);
-         image1 = qp_load_image_mem(gfx_LogotipoKFT2023_2);
-         image2 = qp_load_image_mem(gfx_LogotipoKFT2023_3);
-         image3 = qp_load_image_mem(gfx_LogotipoKFT2023_4);
+         image0 = qp_load_image_mem(gfx_KFTLogo1);
+         image1 = qp_load_image_mem(gfx_KFTLogo2);
+         image2 = qp_load_image_mem(gfx_KFTLogo3);
+         image3 = qp_load_image_mem(gfx_KFTLogo4);
           } 
      //If using pointing device on right side, comment out following 3 lines
          //else {

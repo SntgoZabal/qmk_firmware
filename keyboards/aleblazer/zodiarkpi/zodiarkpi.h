@@ -3,10 +3,10 @@
 
 // Define the layout modes
 typedef enum {
-    KB_MODE0,
-    KB_MODE1,
-    KB_MODE2,
-    KB_MODE3
+    KB_MODE_0,
+    KB_MODE_1,
+    KB_MODE_2,
+    KB_MODE_3
 } kb_mode_t;
 
 // Declare the current layout mode and image variables

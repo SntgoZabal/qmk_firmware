@@ -14,6 +14,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 #include "unicode.h"
+#include "zodiarkpi.h"
 
 enum custom_keycodes {
     KB_MODE0 = SAFE_RANGE,
@@ -42,8 +43,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to custom effect 0
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
                 // Change image
-                //current_image = image0;
-                //qp_drawimage(display, 0, 0, current_image);
+                //set_layout_mode(KB_MODE0);
             }
             return false;
 
@@ -54,8 +54,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to custom effect 1
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
                 // Change image
-                //current_image = image1;
-                //qp_drawimage(display, 0, 0, current_image);
+                //set_layout_mode(KB_MODE1);
             }
             return false;
         
@@ -66,8 +65,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to custom effect 2
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_2);
                 // Change image
-                //current_image = image2;
-                //qp_drawimage(display, 0, 0, current_image);
+                //set_layout_mode(KB_MODE2);
             }
             return false;
         
@@ -78,8 +76,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to custom effect 3
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_3);
                 // Change image
-                //current_image = image3;
-                //qp_drawimage(display, 0, 0, current_image);
+                //set_layout_mode(KB_MODE3);
             }
             return false;
         

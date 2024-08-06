@@ -143,11 +143,25 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) { /* Second encoder */
         if (clockwise) {
+            if (current_image == image3) {
+                //rgblight_decrease_val();
+                rgblight_increase_val();
+            } else {
+                //rgblight_decrease_val();
+                tap_code16(LCTL(KC_PMNS));
+            }
             //rgblight_decrease_val();
-            tap_code16(LCTL(KC_PMNS));
+            //tap_code16(LCTL(KC_PMNS));
         } else {
+            if (current_image == image3) {
+                //rgblight_decrease_val();
+                rgblight_decrease_val();
+            } else {
+                //rgblight_increase_val();
+                tap_code16(LCTL(KC_PPLS));
+            }
             //rgblight_increase_val();
-            tap_code16(LCTL(KC_PPLS));
+            //tap_code16(LCTL(KC_PPLS));
         }
 
     } else if (index == 2) { /* Third encoder */
@@ -188,6 +202,8 @@ static painter_image_handle_t image1;
 static painter_image_handle_t image2;
 static painter_image_handle_t image3;
 painter_image_handle_t current_image; // Changed to const char* for consistency
+
+
 
 kb_mode_t current_layout_mode = KB_MODE_0;
 

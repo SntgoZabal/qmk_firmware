@@ -189,14 +189,6 @@ static painter_image_handle_t image2;
 static painter_image_handle_t image3;
 static const char* current_image;
 
-// Define the layout modes and the current layout mode
-typedef enum {
-    KB_MODE_0,
-    KB_MODE_1,
-    KB_MODE_2,
-    KB_MODE_3
-} kb_mode_t;
-
 kb_mode_t current_layout_mode = KB_MODE_0;
 
 // Function to set the layout mode and update the current image

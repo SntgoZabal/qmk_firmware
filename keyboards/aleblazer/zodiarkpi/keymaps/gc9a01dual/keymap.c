@@ -41,7 +41,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to layer 0
                 layer_move(0);
                 // Switch to custom effect 0
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
+                //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
                 // Change image
                 set_layout_mode(KB_MODE_0);
             }
@@ -52,7 +52,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to layer 1
                 layer_move(1);
                 // Switch to custom effect 1
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
+                //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
                 // Change image
                 set_layout_mode(KB_MODE_1);
             }
@@ -63,7 +63,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to layer 2
                 layer_move(2);
                 // Switch to custom effect 2
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_2);
+                //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_2);
                 // Change image
                 set_layout_mode(KB_MODE_2);
             }
@@ -74,7 +74,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Switch to layer 3
                 layer_move(3);
                 // Switch to custom effect 3
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_3);
+                //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_3);
                 // Change image
                 set_layout_mode(KB_MODE_3);
             }

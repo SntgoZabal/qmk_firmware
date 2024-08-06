@@ -11,7 +11,7 @@ typedef enum {
 
 // Declare the current layout mode and image variables
 extern kb_mode_t current_layout_mode;
-extern const char* current_image;
+extern painter_image_handle_t current_image;
 
 // Function to set the layout mode
 void set_layout_mode(kb_mode_t mode);

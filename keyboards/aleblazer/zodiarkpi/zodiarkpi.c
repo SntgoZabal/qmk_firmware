@@ -187,7 +187,7 @@ static painter_image_handle_t image0;
 static painter_image_handle_t image1;
 static painter_image_handle_t image2;
 static painter_image_handle_t image3;
-static const char* current_image;
+static painter_image_handle_t current_image;
 
 kb_mode_t current_layout_mode = KB_MODE_0;
 

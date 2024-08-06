@@ -80,7 +80,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        /*
+        
         case KB_ACCENT:
             if (record->event.pressed) {
                 if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
@@ -109,7 +109,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     }
                 }
             }
-        */
         break;
         
     }

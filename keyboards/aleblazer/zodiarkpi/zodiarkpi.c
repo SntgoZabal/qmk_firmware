@@ -208,6 +208,10 @@ void set_layout_mode(kb_mode_t mode) {
             current_image = image3;
             break;
     }
+    // Update the display with the new image
+    if (is_keyboard_left()) {
+        qp_drawimage(display, 0, 0, current_image);
+    }
 }
 
 // st7789 enable, comment out the following line if not using a st7789
@@ -222,6 +226,9 @@ void keyboard_post_init_user(void) {
   debug_keyboard=true;
   debug_mouse=true;
   rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
+
+  // Set initial layout mode to KB_MODE_0
+  set_layout_mode(KB_MODE_0);
 }
 
 uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {

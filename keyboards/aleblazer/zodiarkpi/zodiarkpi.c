@@ -13,6 +13,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "quantum.h"
 #include "print.h"
+#include "zodiarkpi.h"
 
 #ifdef RGB_MATRIX_ENABLE
 led_config_t g_led_config = { {
@@ -186,12 +187,41 @@ static painter_image_handle_t image0;
 static painter_image_handle_t image1;
 static painter_image_handle_t image2;
 static painter_image_handle_t image3;
-static painter_image_handle_t current_image;
+static const char* current_image;
+
+// Define the layout modes and the current layout mode
+typedef enum {
+    KB_MODE_0,
+    KB_MODE_1,
+    KB_MODE_2,
+    KB_MODE_3
+} kb_mode_t;
+
+kb_mode_t current_layout_mode = KB_MODE_0;
+
+// Function to set the layout mode and update the current image
+void set_layout_mode(kb_mode_t mode) {
+    current_layout_mode = mode;
+    switch (mode) {
+        case KB_MODE_0:
+            current_image = image0;
+            break;
+        case KB_MODE_1:
+            current_image = image1;
+            break;
+        case KB_MODE_2:
+            current_image = image2;
+            break;
+        case KB_MODE_3:
+            current_image = image3;
+            break;
+    }
+}
 
 // st7789 enable, comment out the following line if not using a st7789
 //painter_device_t qp_st7789_make_spi_device(uint16_t panel_width, uint16_t panel_height, pin_t chip_select_pin, pin_t dc_pin, pin_t reset_pin, uint16_t spi_divisor, int spi_mode);
 // gc9a01 enable, comment out the following line if not using a gc9a01
- painter_device_t qp_gc9a01_make_spi_device(uint16_t panel_width, uint16_t panel_height, pin_t chip_select_pin, pin_t dc_pin, pin_t reset_pin, uint16_t spi_divisor, int spi_mode);
+painter_device_t qp_gc9a01_make_spi_device(uint16_t panel_width, uint16_t panel_height, pin_t chip_select_pin, pin_t dc_pin, pin_t reset_pin, uint16_t spi_divisor, int spi_mode);
 
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
@@ -253,7 +283,7 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
     // ##end GC9A01 screeen support
 
     if (is_keyboard_left()) {
-        current_image = image0;
+        set_layout_mode(KB_MODE_0); // Ensure initial image is set
         qp_drawimage(display, 0, 0, current_image);
     } 
     // If using pointing device on right side, comment out following 3 lines

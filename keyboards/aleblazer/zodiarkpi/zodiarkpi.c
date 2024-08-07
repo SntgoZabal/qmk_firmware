@@ -365,7 +365,7 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     else if (index == 3) { /* Fourth encoder */
         if (clockwise) {
             if (current_image == image3) {
-                rgblight_decrease_spd();//Decrease speed
+                //rgblight_decrease_spd();//Decrease speed
             } else {
                 tap_code(KC_MS_WH_RIGHT);//Scroll right
             }

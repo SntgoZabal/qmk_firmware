@@ -182,7 +182,7 @@ void keyboard_post_init_user(void) {
   debug_matrix=true;
   debug_keyboard=true;
   debug_mouse=true;
-  //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
+  rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
 
   // Set initial layout mode to KB_MODE_0
   set_layout_mode(KB_MODE_0);

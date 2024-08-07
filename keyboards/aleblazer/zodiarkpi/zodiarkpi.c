@@ -323,7 +323,7 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
         if (clockwise) {
             if (current_image == image3) {
                 //rgblight_decrease_val();
-                rgblight_increase_val();
+                rgblight_decrease_val();
             } else {
                 //rgblight_decrease_val();
                 tap_code16(LCTL(KC_PMNS));
@@ -332,8 +332,8 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
             //tap_code16(LCTL(KC_PMNS));
         } else {
             if (current_image == image3) {
-                //rgblight_decrease_val();
-                rgblight_decrease_val();
+                //rgblight_increase_val();
+                rgblight_increase_val();
             } else {
                 //rgblight_increase_val();
                 tap_code16(LCTL(KC_PPLS));

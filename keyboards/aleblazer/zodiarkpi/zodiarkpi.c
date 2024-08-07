@@ -316,19 +316,15 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     if (index == 0) { /* First encoder */
         if (clockwise) {
             if (current_image == image3) {
-                //rgblight_decrease_val();
-                rgblight_decrease_sat();
+                rgblight_decrease_sat();//Decrease saturation (white vs color)
             } else {
-                //rgblight_decrease_val();
-                tap_code_delay(KC_VOLD, 10);
+                tap_code_delay(KC_VOLD, 10);//Decrease volume
             }
         } else {
             if (current_image == image3) {
-                //rgblight_increase_val();
-                rgblight_increase_sat();
+                rgblight_increase_sat();//Increase saturation (white vs color)
             } else {
-                //rgblight_increase_val();
-                tap_code_delay(KC_VOLU, 10);
+                tap_code_delay(KC_VOLU, 10);//Increase volume
             }
         }
     }
@@ -336,19 +332,15 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     else if (index == 1) { /* Second encoder */
         if (clockwise) {
             if (current_image == image3) {
-                //rgblight_decrease_val();
-                rgblight_decrease_val();
+                rgblight_decrease_val();//Decrease value (brightness)
             } else {
-                //rgblight_decrease_val();
-                tap_code16(LCTL(KC_PMNS));
+                tap_code16(LCTL(KC_PMNS));//Zoom out
             }
         } else {
             if (current_image == image3) {
-                //rgblight_increase_val();
-                rgblight_increase_val();
+                rgblight_increase_val();//Increase value (brightness)
             } else {
-                //rgblight_increase_val();
-                tap_code16(LCTL(KC_PPLS));
+                tap_code16(LCTL(KC_PPLS));//Zoom in
             }
         }
 
@@ -356,17 +348,33 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     
     else if (index == 2) { /* Third encoder */
         if (clockwise) {
-            tap_code(KC_MS_WH_DOWN);
+            if (current_image == image3) {
+                rgblight_decrease_hue();//Decrease hue (color)
+            } else {
+                tap_code(KC_MS_WH_DOWN);//Scroll down
+            }
         } else {
-            tap_code(KC_MS_WH_UP);
+            if (current_image == image3) {
+                rgblight_increase_hue();//Increase hue (color)
+            } else {
+                tap_code(KC_MS_WH_UP);// Scroll up
+            }
         }
     }
     
     else if (index == 3) { /* Fourth encoder */
         if (clockwise) {
-            tap_code(KC_MS_WH_RIGHT);
+            if (current_image == image3) {
+                //rgblight_decrease_spe();//Decrease speed
+            } else {
+                tap_code(KC_MS_WH_RIGHT);//Scroll right
+            }
         } else {
-            tap_code(KC_MS_WH_LEFT);
+            if (current_image == image3) {
+                //rgblight_increase_spe();//Increase speed
+            } else {
+                tap_code(KC_MS_WH_LEFT);//Scroll left
+            }
         }
     }
     

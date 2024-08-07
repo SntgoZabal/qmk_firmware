@@ -315,11 +315,25 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     }
     if (index == 0) { /* First encoder */
         if (clockwise) {
-            tap_code_delay(KC_VOLD, 10);
+            if (current_image == image3) {
+                //rgblight_decrease_val();
+                rgblight_decrease_sat();
+            } else {
+                //rgblight_decrease_val();
+                tap_code_delay(KC_VOLD, 10);
+            }
         } else {
-            tap_code_delay(KC_VOLU, 10);
+            if (current_image == image3) {
+                //rgblight_increase_val();
+                rgblight_increase_sat();
+            } else {
+                //rgblight_increase_val();
+                tap_code_delay(KC_VOLU, 10);
+            }
         }
-    } else if (index == 1) { /* Second encoder */
+    }
+    
+    else if (index == 1) { /* Second encoder */
         if (clockwise) {
             if (current_image == image3) {
                 //rgblight_decrease_val();
@@ -328,8 +342,6 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
                 //rgblight_decrease_val();
                 tap_code16(LCTL(KC_PMNS));
             }
-            //rgblight_decrease_val();
-            //tap_code16(LCTL(KC_PMNS));
         } else {
             if (current_image == image3) {
                 //rgblight_increase_val();
@@ -338,23 +350,27 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
                 //rgblight_increase_val();
                 tap_code16(LCTL(KC_PPLS));
             }
-            //rgblight_increase_val();
-            //tap_code16(LCTL(KC_PPLS));
         }
 
-    } else if (index == 2) { /* Third encoder */
+    }
+    
+    else if (index == 2) { /* Third encoder */
         if (clockwise) {
             tap_code(KC_MS_WH_DOWN);
         } else {
             tap_code(KC_MS_WH_UP);
         }
-    } else if (index == 3) { /* Fourth encoder */
+    }
+    
+    else if (index == 3) { /* Fourth encoder */
         if (clockwise) {
             tap_code(KC_MS_WH_RIGHT);
         } else {
             tap_code(KC_MS_WH_LEFT);
         }
-    } else if (index == 4) { /* Fifth encoder */
+    }
+    
+    else if (index == 4) { /* Fifth encoder */
         if (clockwise) {
             tap_code(KC_MS_WH_DOWN);
         } else {

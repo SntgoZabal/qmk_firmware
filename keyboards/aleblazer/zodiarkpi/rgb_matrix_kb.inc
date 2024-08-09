@@ -223,38 +223,21 @@ bool SZV_EFFECT_3(effect_params_t* params) {
 }
 
 static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
-    // Use animation_speed to control the time offset and slow it down by a factor of 2
-    time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed) >> 1;  // Slow down the time by dividing by 2
+    // Define the hue start (angle A) and hue end (angle B)
+    uint8_t hue_start = hsv.h;  // Assume this is set to the starting hue (angle A)
+    uint8_t hue_end = hue_start + rgb_matrix_config.speed;  // Final hue value based on speed (angle B)
+    uint8_t hue_range = hue_end - hue_start;  // Range of the hue transition
 
-    // Calculate the range of hues to cycle through
-    uint8_t hue_start = hsv.h;  // Initial hue value
-    uint8_t hue_end = hue_start + rgb_matrix_config.speed;  // Final hue value based on speed
-    uint8_t hue_range = hue_end - hue_start;  // The range of hues to transition through
+    // Normalize time to a 0-255 range for one full cycle back and forth
+    uint8_t normalized_time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed);
 
-    // Get the Y-coordinate from g_led_config and normalize it
-    uint8_t y_position = g_led_config.point[i].y;
-    uint8_t normalized_y_position = scale8(y_position, 255);  // Scale the Y-coordinate to 0-255
+    // Use a sine wave to create a smooth back-and-forth pivot
+    // The sine function oscillates between -1 and 1, so we scale it to pivot between 0 and hue_range
+    float pivot = (sinf(normalized_time * (M_PI / 255.0)) + 1) / 2;  // Normalize sine to 0-1
+    uint8_t pivoted_hue = hue_start + pivot * hue_range;
 
-    uint8_t hue_offset = scale8(normalized_y_position, hue_range);
-
-    // Create a full cycle effect by using modulus on four times the hue range
-    uint8_t full_cycle_range = 4 * hue_range;
-    uint8_t cycle_offset = (hue_offset + time) % full_cycle_range;
-
-    // Adjust the cycle offset to cover A -> B -> A -> B
-    if (cycle_offset < hue_range) {
-        // A -> B
-        hsv.h = hue_start + cycle_offset;
-    } else if (cycle_offset < 2 * hue_range) {
-        // B -> A
-        hsv.h = hue_end - (cycle_offset - hue_range);
-    } else if (cycle_offset < 3 * hue_range) {
-        // A -> B (second cycle)
-        hsv.h = hue_start + (cycle_offset - 2 * hue_range);
-    } else {
-        // B -> A (second cycle)
-        hsv.h = hue_end - (cycle_offset - 3 * hue_range);
-    }
+    // Apply the pivot to the hue
+    hsv.h = pivoted_hue;
 
     return hsv;
 }

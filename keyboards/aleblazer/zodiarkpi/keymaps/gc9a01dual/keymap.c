@@ -21,7 +21,9 @@ enum custom_keycodes {
     KB_MODE1,
     KB_MODE2,
     KB_MODE3,
-    KB_ACCENT
+    KB_ACCENT,
+    RGB_ANIM_SPEED_UP,
+    RGB_ANIM_SPEED_DOWN
 };
 
 /*
@@ -91,6 +93,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     accent_tilde_mode = false;
                 }
                 vowel_timer = timer_read();
+            }
+            return false;
+        
+        case RGB_ANIM_SPEED_UP:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.animation_speed < 255) {
+                    rgb_matrix_config.animation_speed += 1;
+                }
+                eeconfig_update_rgb_matrix(rgb_matrix_config.raw);  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
+            }
+            return false;
+        
+        case RGB_ANIM_SPEED_DOWN:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.animation_speed > 0) {
+                    rgb_matrix_config.animation_speed -= 1;
+                }
+                eeconfig_update_rgb_matrix(rgb_matrix_config.raw);  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
             }
             return false;
         

@@ -81,6 +81,7 @@ typedef union {
         HSV         hsv;
         uint8_t     speed;
         led_flags_t flags;
+        uint8_t     animation_speed;  // New field for animation speed
     };
 } rgb_config_t;
 

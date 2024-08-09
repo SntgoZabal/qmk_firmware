@@ -230,22 +230,29 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     uint8_t hue_start = hsv.h;  // Initial hue value
     uint8_t hue_end = hue_start + rgb_matrix_config.speed;  // Final hue value based on speed
 
-    // Calculate the current hue based on position and time, with mirroring effect
+    // Calculate the current hue based on position and time, with the full cycle effect
     uint8_t hue_range = hue_end - hue_start;
     uint8_t y_position = g_led_config.point[i].y;
     uint8_t hue_offset = scale8(y_position, hue_range);  // Scale y-position to the hue range
 
-    // Create a mirrored effect by using modulus on double the hue range
-    uint8_t double_hue_range = 2 * hue_range;
-    uint8_t mirrored_offset = (hue_offset + time) % double_hue_range;
+    // Create a full cycle effect by using modulus on four times the hue range
+    uint8_t full_cycle_range = 4 * hue_range;
+    uint8_t cycle_offset = (hue_offset + time) % full_cycle_range;
 
-    if (mirrored_offset > hue_range) {
-        // If the offset is in the second half of the range, mirror it back
-        mirrored_offset = double_hue_range - mirrored_offset;
+    // Adjust the cycle offset to cover A -> B -> A -> B
+    if (cycle_offset < hue_range) {
+        // A -> B
+        hsv.h = hue_start + cycle_offset;
+    } else if (cycle_offset < 2 * hue_range) {
+        // B -> A
+        hsv.h = hue_end - (cycle_offset - hue_range);
+    } else if (cycle_offset < 3 * hue_range) {
+        // A -> B (second cycle)
+        hsv.h = hue_start + (cycle_offset - 2 * hue_range);
+    } else {
+        // B -> A (second cycle)
+        hsv.h = hue_end - (cycle_offset - 3 * hue_range);
     }
-
-    // Set the hue based on the mirrored offset
-    hsv.h = hue_start + mirrored_offset;
 
     return hsv;
 }
@@ -253,5 +260,4 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
 bool SZV_EFFECT_4(effect_params_t* params) {
     return effect_runner_i(params, &SZV_EFFECT_4_math);
 }
-
 #endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS

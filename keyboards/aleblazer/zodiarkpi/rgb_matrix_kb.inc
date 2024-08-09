@@ -224,7 +224,7 @@ bool SZV_EFFECT_3(effect_params_t* params) {
 
 static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     // Use animation_speed to control the time offset and slow it down by a factor of 4
-    time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed) >> 2;  // Slow down the time by dividing by 4
+    time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed) >> 1;  // Slow down the time by dividing by 4
 
     // Calculate the range of hues to cycle through
     uint8_t hue_start = hsv.h;  // Initial hue value

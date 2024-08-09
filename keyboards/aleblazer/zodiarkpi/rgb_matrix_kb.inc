@@ -230,14 +230,25 @@ bool SZV_EFFECT_4(effect_params_t* params) {
     uint8_t animation_speed = scale8(g_rgb_timer, rgb_matrix_config.animation_speed);  // Use the stored animation speed
     uint8_t time_offset = (animation_speed >> 3);  // Adjust time scale for smooth animation
 
+    // Total height of the gradient in LEDs
+    uint8_t gradient_height = RGB_MATRIX_LED_COUNT / 2;
+
     for (uint8_t i = led_min; i < led_max; i++) {
         RGB_MATRIX_TEST_LED_FLAGS();
         
-        // The y range will be 0..64, map this to 0..4, and apply the time offset
-        // This creates the vertical shifting effect
-        hsv.h = rgb_matrix_config.hsv.h + band_thickness * ((g_led_config.point[i].y >> 4) + time_offset);
+        // Calculate the position within the gradient, including the mirroring effect
+        uint8_t y_position = g_led_config.point[i].y + time_offset;
+
+        // Determine if we are in the ascending or descending part of the gradient
+        uint8_t mirrored_position = y_position % (2 * gradient_height);
+        if (mirrored_position > gradient_height) {
+            mirrored_position = 2 * gradient_height - mirrored_position;
+        }
+
+        // Adjust the hue based on the mirrored position
+        hsv.h = rgb_matrix_config.hsv.h + band_thickness * (mirrored_position >> 4);
         
-        // Make sure the hue value wraps around properly
+        // Ensure the hue value wraps around properly
         hsv.h %= 255;
 
         RGB rgb = rgb_matrix_hsv_to_rgb(hsv);

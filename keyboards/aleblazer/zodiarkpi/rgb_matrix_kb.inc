@@ -223,6 +223,9 @@ bool SZV_EFFECT_3(effect_params_t* params) {
 }
 
 static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
+    // Use animation_speed to control the time offset
+    time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed);
+
     // Calculate the range of hues to cycle through
     uint8_t hue_start = hsv.h;  // Initial hue value
     uint8_t hue_end = hue_start + rgb_matrix_config.speed;  // Final hue value based on speed
@@ -239,9 +242,7 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
 }
 
 bool SZV_EFFECT_4(effect_params_t* params) {
-    // Use animation_speed to control the time offset
-    uint8_t time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed);
-    return effect_runner_i(params, &SZV_EFFECT_4_math, time);
+    return effect_runner_i(params, &SZV_EFFECT_4_math);
 }
 
 #endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS

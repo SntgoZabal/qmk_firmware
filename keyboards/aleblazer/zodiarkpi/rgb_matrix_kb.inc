@@ -223,21 +223,17 @@ bool SZV_EFFECT_3(effect_params_t* params) {
 }
 
 static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
-    // Use animation_speed to control the time offset and slow it down by a factor of 4
-    time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed) >> 2;  // Slow down the time by dividing by 4
+    // Use animation_speed to control the time offset and slow it down by a factor of 2
+    time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed) >> 1;  // Slow down the time by dividing by 2
 
     // Calculate the range of hues to cycle through
     uint8_t hue_start = hsv.h;  // Initial hue value
     uint8_t hue_end = hue_start + rgb_matrix_config.speed;  // Final hue value based on speed
     uint8_t hue_range = hue_end - hue_start;  // The range of hues to transition through
 
-    // Ensure the y_position covers the entire height of the keyboard
-    uint8_t y_position = g_led_config.point[i].y;
-    uint8_t y_max = 255;  // Assuming y-position ranges from 0 to 255
-
-    // Calculate the hue offset based on the y-position scaled to the full hue range
-    uint8_t scaled_position = scale8(y_position, y_max);
-    uint8_t hue_offset = scale8(scaled_position, hue_range);
+    // Normalize y_position based on actual range in info.json (0 to 4.6)
+    float y_position = g_led_config.point[i].y / 4.6 * 255;
+    uint8_t hue_offset = scale8((uint8_t)y_position, hue_range);
 
     // Create a full cycle effect by using modulus on four times the hue range
     uint8_t full_cycle_range = 4 * hue_range;

@@ -231,9 +231,11 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     uint8_t hue_end = hue_start + rgb_matrix_config.speed;  // Final hue value based on speed
     uint8_t hue_range = hue_end - hue_start;  // The range of hues to transition through
 
-    // Normalize y_position based on actual range in info.json (0 to 4.6)
-    float y_position = g_led_config.point[i].y / 128 * 255;
-    uint8_t hue_offset = scale8((uint8_t)y_position, hue_range);
+    // Get the Y-coordinate from g_led_config and normalize it
+    uint8_t y_position = g_led_config.point[i].y;
+    uint8_t normalized_y_position = scale8(y_position, 255);  // Scale the Y-coordinate to 0-255
+
+    uint8_t hue_offset = scale8(normalized_y_position, hue_range);
 
     // Create a full cycle effect by using modulus on four times the hue range
     uint8_t full_cycle_range = 4 * hue_range;

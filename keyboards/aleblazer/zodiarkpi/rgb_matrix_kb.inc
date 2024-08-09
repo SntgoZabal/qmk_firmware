@@ -222,7 +222,7 @@ bool SZV_EFFECT_3(effect_params_t* params) {
     return effect_runner_i(params, &SZV_EFFECT_3_math);
 }
 
-bool GRADIENT_UP_DOWN(effect_params_t* params) {
+bool SZV_EFFECT_4(effect_params_t* params) {
     RGB_MATRIX_USE_LIMITS(led_min, led_max);
 
     HSV     hsv   = rgb_matrix_config.hsv;

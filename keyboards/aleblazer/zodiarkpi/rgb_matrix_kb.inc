@@ -226,16 +226,16 @@ bool SZV_EFFECT_4(effect_params_t* params) {
     RGB_MATRIX_USE_LIMITS(led_min, led_max);
 
     HSV     hsv   = rgb_matrix_config.hsv;
-    uint8_t scale = scale8(64, rgb_matrix_config.speed);
-    uint8_t time_offset = (scale8(g_rgb_timer, rgb_matrix_config.speed) >> 3);  // Adjust time scale for smooth animation
+    uint8_t band_thickness = scale8(64, rgb_matrix_config.speed);  // Controls the thickness of the color bands
+    uint8_t animation_speed = scale8(g_rgb_timer, ANIMATION_SPEED_VARIABLE);  // Introduce a new variable for animation speed
+    uint8_t time_offset = (animation_speed >> 3);  // Adjust time scale for smooth animation
 
-    // Loop through all LEDs using led_min and led_max
     for (uint8_t i = led_min; i < led_max; i++) {
         RGB_MATRIX_TEST_LED_FLAGS();
         
         // The y range will be 0..64, map this to 0..4, and apply the time offset
         // This creates the vertical shifting effect
-        hsv.h = rgb_matrix_config.hsv.h + scale * ((g_led_config.point[i].y >> 4) + time_offset);
+        hsv.h = rgb_matrix_config.hsv.h + band_thickness * ((g_led_config.point[i].y >> 4) + time_offset);
         
         // Make sure the hue value wraps around properly
         hsv.h %= 255;

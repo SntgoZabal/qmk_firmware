@@ -230,13 +230,22 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     uint8_t hue_start = hsv.h;  // Initial hue value
     uint8_t hue_end = hue_start + rgb_matrix_config.speed;  // Final hue value based on speed
 
-    // Calculate the current hue based on position and time
+    // Calculate the current hue based on position and time, with mirroring effect
     uint8_t hue_range = hue_end - hue_start;
     uint8_t y_position = g_led_config.point[i].y;
     uint8_t hue_offset = scale8(y_position, hue_range);  // Scale y-position to the hue range
 
-    // Cycle the hue through the defined range
-    hsv.h = hue_start + ((hue_offset + time) % hue_range);
+    // Create a mirrored effect by using modulus on double the hue range
+    uint8_t double_hue_range = 2 * hue_range;
+    uint8_t mirrored_offset = (hue_offset + time) % double_hue_range;
+
+    if (mirrored_offset > hue_range) {
+        // If the offset is in the second half of the range, mirror it back
+        mirrored_offset = double_hue_range - mirrored_offset;
+    }
+
+    // Set the hue based on the mirrored offset
+    hsv.h = hue_start + mirrored_offset;
 
     return hsv;
 }

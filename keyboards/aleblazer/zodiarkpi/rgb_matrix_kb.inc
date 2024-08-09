@@ -227,7 +227,7 @@ bool SZV_EFFECT_4(effect_params_t* params) {
 
     HSV     hsv   = rgb_matrix_config.hsv;
     uint8_t band_thickness = scale8(64, rgb_matrix_config.speed);  // Controls the thickness of the color bands
-    uint8_t animation_speed = scale8(g_rgb_timer, ANIMATION_SPEED_VARIABLE);  // Introduce a new variable for animation speed
+    uint8_t animation_speed = scale8(g_rgb_timer, rgb_matrix_config.animation_speed);  // Use the stored animation speed
     uint8_t time_offset = (animation_speed >> 3);  // Adjust time scale for smooth animation
 
     for (uint8_t i = led_min; i < led_max; i++) {

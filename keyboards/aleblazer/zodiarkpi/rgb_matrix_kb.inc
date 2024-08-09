@@ -222,39 +222,26 @@ bool SZV_EFFECT_3(effect_params_t* params) {
     return effect_runner_i(params, &SZV_EFFECT_3_math);
 }
 
+static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
+    // Calculate the range of hues to cycle through
+    uint8_t hue_start = hsv.h;  // Initial hue value
+    uint8_t hue_end = hue_start + rgb_matrix_config.speed;  // Final hue value based on speed
+
+    // Calculate the current hue based on position and time
+    uint8_t hue_range = hue_end - hue_start;
+    uint8_t y_position = g_led_config.point[i].y;
+    uint8_t hue_offset = scale8(y_position, hue_range);  // Scale y-position to the hue range
+
+    // Cycle the hue through the defined range
+    hsv.h = hue_start + ((hue_offset + time) % hue_range);
+
+    return hsv;
+}
+
 bool SZV_EFFECT_4(effect_params_t* params) {
-    RGB_MATRIX_USE_LIMITS(led_min, led_max);
-
-    HSV     hsv   = rgb_matrix_config.hsv;
-    uint8_t band_thickness = scale8(64, rgb_matrix_config.speed);  // Controls the thickness of the color bands
-    uint8_t animation_speed = scale8(g_rgb_timer, rgb_matrix_config.animation_speed);  // Use the stored animation speed
-    uint8_t time_offset = (animation_speed >> 3);  // Adjust time scale for smooth animation
-
-    // Total height of the gradient in LEDs
-    uint8_t gradient_height = RGB_MATRIX_LED_COUNT / 2;
-
-    for (uint8_t i = led_min; i < led_max; i++) {
-        RGB_MATRIX_TEST_LED_FLAGS();
-        
-        // Calculate the position within the gradient, including the mirroring effect
-        uint8_t y_position = g_led_config.point[i].y + time_offset;
-
-        // Determine if we are in the ascending or descending part of the gradient
-        uint8_t mirrored_position = y_position % (2 * gradient_height);
-        if (mirrored_position > gradient_height) {
-            mirrored_position = 2 * gradient_height - mirrored_position;
-        }
-
-        // Adjust the hue based on the mirrored position
-        hsv.h = rgb_matrix_config.hsv.h + band_thickness * (mirrored_position >> 4);
-        
-        // Ensure the hue value wraps around properly
-        hsv.h %= 255;
-
-        RGB rgb = rgb_matrix_hsv_to_rgb(hsv);
-        rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-    }
-    return rgb_matrix_check_finished_leds(led_max);
+    // Use animation_speed to control the time offset
+    uint8_t time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed);
+    return effect_runner_i(params, &SZV_EFFECT_4_math, time);
 }
 
 #endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS

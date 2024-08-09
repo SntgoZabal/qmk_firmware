@@ -229,8 +229,8 @@ bool SZV_EFFECT_4(effect_params_t* params) {
     uint8_t scale = scale8(64, rgb_matrix_config.speed);
     uint8_t time_offset = (scale8(g_rgb_timer, rgb_matrix_config.speed) >> 3);  // Adjust time scale for smooth animation
 
-    // Loop through all LEDs on both halves
-    for (uint8_t i = 0; i < DRIVER_LED_TOTAL; i++) {
+    // Loop through all LEDs using led_min and led_max
+    for (uint8_t i = led_min; i < led_max; i++) {
         RGB_MATRIX_TEST_LED_FLAGS();
         
         // The y range will be 0..64, map this to 0..4, and apply the time offset

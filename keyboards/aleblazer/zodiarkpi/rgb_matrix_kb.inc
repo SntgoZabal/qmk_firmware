@@ -224,20 +224,14 @@ bool SZV_EFFECT_3(effect_params_t* params) {
 
 static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     // Define the hue start (angle A) and hue end (angle B)
-    uint8_t hue_start = hsv.h;  // Assume this is set to the starting hue (angle A)
-    uint8_t hue_end = hue_start + rgb_matrix_config.speed;  // Final hue value based on speed (angle B)
+    uint8_t hue_start = rgb_matrix_config.hue;  // Assume this is set to the starting hue (angle A)
+    uint8_t hue_end = hue_start + rgb_matrix_config.animation_speed;  // Final hue value based on speed (angle B)
     uint8_t hue_range = hue_end - hue_start;  // Range of the hue transition
 
-    // Normalize time to a 0-255 range for one full cycle back and forth
-    uint8_t normalized_time = scale8(g_rgb_timer, rgb_matrix_config.animation_speed);
-
-    // Use a sine wave to create a smooth back-and-forth pivot
-    // The sine function oscillates between -1 and 1, so we scale it to pivot between 0 and hue_range
-    float pivot = (sinf(normalized_time * (M_PI / 255.0)) + 1) / 2;  // Normalize sine to 0-1
-    uint8_t pivoted_hue = hue_start + pivot * hue_range;
+    pivot = g_led_config.point[i].y - time;
 
     // Apply the pivot to the hue
-    hsv.h = pivoted_hue;
+    hsv.h = ((hue_range/2)*(cosf(pivot)+1))+hue_start;
 
     return hsv;
 }

@@ -221,7 +221,7 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
 
 static HSV SZV_EFFECT_5_math(HSV hsv, uint8_t i, uint8_t time) {
     // Set the hue to the value of rgb_matrix_config.speed
-    hsv.h = rgb_matrix_config.speed;
+    hsv.h = rgb_matrix_config.hsv.h;
     return hsv;
 }
 

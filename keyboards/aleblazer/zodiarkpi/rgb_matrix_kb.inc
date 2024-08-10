@@ -8,6 +8,8 @@ RGB_MATRIX_EFFECT(SZV_EFFECT_1)
 RGB_MATRIX_EFFECT(SZV_EFFECT_2)
 RGB_MATRIX_EFFECT(SZV_EFFECT_3)
 RGB_MATRIX_EFFECT(SZV_EFFECT_4)
+RGB_MATRIX_EFFECT(SZV_EFFECT_5)
+RGB_MATRIX_EFFECT(SZV_EFFECT_6)
 
 // Step 2.
 // Define effects inside the `RGB_MATRIX_CUSTOM_EFFECT_IMPLS` ifdef block
@@ -202,6 +204,34 @@ static HSV SZV_EFFECT_3_math(HSV hsv, uint8_t i, uint8_t time) {
     return hsv;
 }
 
+static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
+    // Define the hue start (angle A) and hue end (angle B)
+    uint8_t hue_start = rgb_matrix_config.speed;  // Assume this is set to the starting hue (angle A)
+    uint8_t hue_end = hue_start + rgb_matrix_config.animation_speed;  // Final hue value based on speed (angle B)
+    uint8_t hue_range = hue_end - hue_start;  // Range of the hue transition
+
+    //float pivot = g_led_config.point[i].y - time;
+    float normalized_pivot = (g_led_config.point[i].y - time) / 255.0 * (2 * M_PI); // Scale to 0-2π
+
+    // Apply the pivot to the hue
+    hsv.h = ((hue_range/2)*(cosf(normalized_pivot)+1))+hue_start;
+
+    return hsv;
+}
+
+static HSV SZV_EFFECT_5_math(HSV hsv, uint8_t i, uint8_t time) {
+    // Set the hue to the value of rgb_matrix_config.speed
+    hsv.h = rgb_matrix_config.speed;
+    return hsv;
+}
+
+// Math function for SZV_EFFECT_6 (solid color set by rgb_matrix_config.animation_speed)
+static HSV SZV_EFFECT_6_math(HSV hsv, uint8_t i, uint8_t time) {
+    // Set the hue to the value of rgb_matrix_config.animation_speed
+    hsv.h = rgb_matrix_config.animation_speed;
+    return hsv;
+}
+
 // Effect runner for SZV_EFFECT_0
 bool SZV_EFFECT_0(effect_params_t* params) {
     return effect_runner_i(params, &SZV_EFFECT_0_math);
@@ -222,23 +252,17 @@ bool SZV_EFFECT_3(effect_params_t* params) {
     return effect_runner_i(params, &SZV_EFFECT_3_math);
 }
 
-static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
-    // Define the hue start (angle A) and hue end (angle B)
-    uint8_t hue_start = rgb_matrix_config.speed;  // Assume this is set to the starting hue (angle A)
-    uint8_t hue_end = hue_start + rgb_matrix_config.animation_speed;  // Final hue value based on speed (angle B)
-    uint8_t hue_range = hue_end - hue_start;  // Range of the hue transition
-
-    //float pivot = g_led_config.point[i].y - time;
-    float normalized_pivot = (g_led_config.point[i].y - time) / 255.0 * (2 * M_PI); // Scale to 0-2π
-
-    // Apply the pivot to the hue
-    hsv.h = ((hue_range/2)*(cosf(normalized_pivot)+1))+hue_start;
-
-    return hsv;
-}
-
 bool SZV_EFFECT_4(effect_params_t* params) {
     return effect_runner_i(params, &SZV_EFFECT_4_math);
+}
+
+bool SZV_EFFECT_5(effect_params_t* params) {
+    return effect_runner_i(params, &SZV_EFFECT_5_math);
+}
+
+// Effect runner for SZV_EFFECT_6
+bool SZV_EFFECT_6(effect_params_t* params) {
+    return effect_runner_i(params, &SZV_EFFECT_6_math);
 }
 
 #endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS

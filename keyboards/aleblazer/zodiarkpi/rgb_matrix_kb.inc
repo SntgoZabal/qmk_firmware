@@ -206,7 +206,7 @@ static HSV SZV_EFFECT_3_math(HSV hsv, uint8_t i, uint8_t time) {
 
 static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     // Define the hue start (angle A) and hue end (angle B)
-    uint8_t hue_start = rgb_matrix_config.speed;  // Assume this is set to the starting hue (angle A)
+    uint8_t hue_start = rgb_matrix_config.hsv.h;  // Assume this is set to the starting hue (angle A)
     uint8_t hue_end = hue_start + rgb_matrix_config.animation_speed;  // Final hue value based on speed (angle B)
     uint8_t hue_range = hue_end - hue_start;  // Range of the hue transition
 

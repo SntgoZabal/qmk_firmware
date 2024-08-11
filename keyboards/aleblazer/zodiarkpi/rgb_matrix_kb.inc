@@ -204,7 +204,7 @@ static HSV SZV_EFFECT_3_math(HSV hsv, uint8_t i, uint8_t time) {
     return hsv;
 }
 
-//#include <math.h>
+#include <math.h>
 
 static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     // Define the hue start (angle A) and hue end (angle B)

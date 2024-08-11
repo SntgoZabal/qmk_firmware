@@ -1,5 +1,7 @@
 // !!! DO NOT ADD #pragma once !!! //
 
+#include <math.h>
+
 // Step 1.
 // Declare custom effects using the RGB_MATRIX_EFFECT macro
 // (note the lack of semicolon after the macro!)
@@ -216,7 +218,7 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     // Apply the pivot to the hue
     //hsv.h = ((hue_range/2)*(cosf(normalized_pivot)+1))+hue_start;
     hsv.h = fabsf(((2*hue_range)/255)*(pivot-(255/2)))+hue_start;
-    hsv.h = pivot;
+    //hsv.h = pivot;
     
     return hsv;
 }

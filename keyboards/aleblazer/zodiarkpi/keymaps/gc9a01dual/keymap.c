@@ -34,8 +34,8 @@ void keyboard_post_init_user(void) {
 */
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static bool accent_tilde_mode = false;
-    static uint16_t vowel_timer;
+    //static bool accent_tilde_mode = false;
+    //static uint16_t vowel_timer;
 
     switch (keycode) {
         case KB_MODE0:
@@ -82,7 +82,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        
+        /*
         case KB_ACCENT:
             if (record->event.pressed) {
                 if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
@@ -95,6 +95,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 vowel_timer = timer_read();
             }
             return false;
+        */
         
         case RGB_ANIM_SPEED_UP:
             if (record->event.pressed) {
@@ -115,7 +116,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         
-        default:
+        //default:
+            /*
             if (!record->event.pressed) {
                 if (timer_elapsed(vowel_timer) < TAPPING_TERM) {
                     // Check if the key is a vowel and apply the accent/tilde
@@ -130,6 +132,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     }
                 }
             }
+            */
+            
         break;
         
     }

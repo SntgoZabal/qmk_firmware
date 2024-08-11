@@ -1,6 +1,6 @@
 // !!! DO NOT ADD #pragma once !!! //
 
-#include <math.h>
+//#include <math.h>
 
 // Step 1.
 // Declare custom effects using the RGB_MATRIX_EFFECT macro

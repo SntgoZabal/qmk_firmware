@@ -100,7 +100,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_ANIM_SPEED_UP:
             if (record->event.pressed) {
                 if (rgb_matrix_config.animation_speed < 255) {
-                    rgb_matrix_config.animation_speed += 1;
+                    rgb_matrix_config.animation_speed += 8;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -109,7 +109,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_ANIM_SPEED_DOWN:
             if (record->event.pressed) {
                 if (rgb_matrix_config.animation_speed > 0) {
-                    rgb_matrix_config.animation_speed -= 1;
+                    rgb_matrix_config.animation_speed -= 8;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again

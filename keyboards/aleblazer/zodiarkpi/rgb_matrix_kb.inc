@@ -217,8 +217,8 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
 
     // Apply the pivot to the hue
     //hsv.h = ((hue_range/2)*(cosf(normalized_pivot)+1))+hue_start;
-    //hsv.h = fabsf(((2*hue_range)/255)*(pivot-(255/2)))+hue_start;
-    float x_value = ((2*hue_range)/255)*(pivot - (255/2));
+    //hsv.h = fabsf((2*hue_range)*(normalized_pivot-0.5))+hue_start;
+    float x_value = (2*hue_range)*(normalized_pivot - 0.5);
     float absolute_value = (x_value < 0) ? -x_value : x_value;
     hsv.h = absolute_value + hue_start;
     

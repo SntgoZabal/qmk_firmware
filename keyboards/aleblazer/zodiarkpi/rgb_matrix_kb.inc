@@ -221,7 +221,7 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     if (normalized_pivot <= M_PI) {
         hsv.h = -((hue_range/M_PI)*normalized_pivot) + hue_end;
     } else {
-        hsv.h = ((hue_range/M_PI)*normalized_pivot) + (hue_start-hue_range);
+        hsv.h = ((hue_range/M_PI)*normalized_pivot) + (hue_srt-hue_range);
     }
     
     return hsv;

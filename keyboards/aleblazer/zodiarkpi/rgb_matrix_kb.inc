@@ -216,15 +216,13 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     float normalized_pivot = (g_led_config.point[i].y - time) / 255.0 * (2 * M_PI); // Scale to 0-2π
 
     // Apply the pivot to the hue
-    //hsv.h = ((hue_range/2)*(cosf(normalized_pivot)+1))+hue_start;
+    //hsv.h = ((hue_range/2)*(cosf(normalized_pivot)+1))+hue_srt;
 
     if (normalized_pivot <= M_PI) {
         hsv.h = -((hue_range/M_PI)*normalized_pivot) + hue_end;
     } else {
         hsv.h = ((hue_range/M_PI)*normalized_pivot) + (hue_start-hue_range);
     }
-
-    hsv.h = absolute_value + hue_srt;
     
     return hsv;
 }

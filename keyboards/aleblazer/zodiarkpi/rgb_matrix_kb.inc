@@ -213,7 +213,7 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     //uint8_t hue_range = hue_end - hue_srt;
 
     //uint8_t pivot = g_led_config.point[i].y - time;
-    float normalized_pivot = (g_led_config.point[i].y - time) / 255.0 * (2 * M_PI); // Scale to 0-2π
+    float normalized_pivot = (g_led_config.point[i].y - time + 128) / 255.0 * (2 * M_PI); // Scale to 0-2π
 
     // Apply the pivot to the hue
     //hsv.h = ((hue_range/2)*(cosf(2*normalized_pivot)+1))+hue_srt;
@@ -224,7 +224,7 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     } else if ((normalized_pivot >= (M_PI/2))&&(normalized_pivot < M_PI)) {
         //hsv.h = (((2*hue_range)/M_PI)*normalized_pivot) + (hue_srt-hue_range);
         hsv.h = 128;
-    } else if ((normalized_pivot >= -M_PI)&&(normalized_pivot < 0)) {
+    } else if ((normalized_pivot >= M_PI)&&(normalized_pivot < ((3*M_PI)/2))) {
         //
         hsv.h = 192;
     } else if ((normalized_pivot >= ((3*M_PI)/2))&&(normalized_pivot < (2*M_PI))) {

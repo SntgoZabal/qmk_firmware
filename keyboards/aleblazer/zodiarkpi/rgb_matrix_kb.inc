@@ -224,7 +224,7 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     } else if ((normalized_pivot >= (M_PI/2))&&(normalized_pivot < M_PI)) {
         //hsv.h = (((2*hue_range)/M_PI)*normalized_pivot) + (hue_srt-hue_range);
         hsv.h = 128;
-    } else if ((normalized_pivot >= M_PI)&&(normalized_pivot < ((3*M_PI)/2))) {
+    } else if ((normalized_pivot >= -M_PI)&&(normalized_pivot < 0)) {
         //
         hsv.h = 192;
     } else if ((normalized_pivot >= ((3*M_PI)/2))&&(normalized_pivot < (2*M_PI))) {

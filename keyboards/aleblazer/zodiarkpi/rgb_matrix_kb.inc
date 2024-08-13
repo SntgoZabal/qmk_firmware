@@ -221,16 +221,13 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     if ((normalized_pivot >= 0)&&(normalized_pivot < (M_PI/2))) {
         //hsv.h = -(((2*hue_range)/M_PI)*normalized_pivot) + hue_end;
         hsv.h = 64;
-    }
-    if ((normalized_pivot >= (M_PI/2))&&(normalized_pivot < M_PI)) {
+    } else if ((normalized_pivot >= (M_PI/2))&&(normalized_pivot < M_PI)) {
         //hsv.h = (((2*hue_range)/M_PI)*normalized_pivot) + (hue_srt-hue_range);
         hsv.h = 128;
-    }
-    if ((normalized_pivot >= M_PI)&&(normalized_pivot < ((3*M_PI)/2))) {
+    } else if ((normalized_pivot >= M_PI)&&(normalized_pivot < ((3*M_PI)/2))) {
         //
         hsv.h = 192;
-    }
-    if ((normalized_pivot >= ((3*M_PI)/2))&&(normalized_pivot < (2*M_PI))) {
+    } else if ((normalized_pivot >= ((3*M_PI)/2))&&(normalized_pivot < (2*M_PI))) {
         //
         hsv.h = 0;
     }

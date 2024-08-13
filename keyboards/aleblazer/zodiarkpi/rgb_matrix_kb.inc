@@ -208,9 +208,9 @@ static HSV SZV_EFFECT_3_math(HSV hsv, uint8_t i, uint8_t time) {
 
 static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     // Define the hue start (angle A) and hue end (angle B)
-    uint8_t hue_end = rgb_matrix_config.hsv.h;  // Assume this is set to the starting hue (angle A)
-    uint8_t hue_srt = rgb_matrix_config.animation_speed;  // Range of the hue transition
-    uint8_t hue_range = hue_end - hue_srt;
+    //uint8_t hue_end = rgb_matrix_config.hsv.h;  // Assume this is set to the starting hue (angle A)
+    //uint8_t hue_srt = rgb_matrix_config.animation_speed;  // Range of the hue transition
+    //uint8_t hue_range = hue_end - hue_srt;
 
     //uint8_t pivot = g_led_config.point[i].y - time;
     float normalized_pivot = (g_led_config.point[i].y - time) / 255.0 * (2 * M_PI); // Scale to 0-2π

@@ -108,7 +108,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_ANIM_SPEED_UP:
             if (record->event.pressed) {
                 if (rgb_matrix_config.animation_speed < 255) {
-                    rgb_matrix_config.animation_speed += 8;
+                    rgb_matrix_config.animation_speed += 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -117,7 +117,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_ANIM_SPEED_DOWN:
             if (record->event.pressed) {
                 if (rgb_matrix_config.animation_speed > 0) {
-                    rgb_matrix_config.animation_speed -= 8;
+                    rgb_matrix_config.animation_speed -= 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -127,7 +127,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_SPEEDI:
             if (record->event.pressed) {
                 if (rgb_matrix_config.speed < 255) {
-                    rgb_matrix_config.speed += 8;
+                    rgb_matrix_config.speed += 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -136,7 +136,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_SPEEDD:
             if (record->event.pressed) {
                 if (rgb_matrix_config.speed > 0) {
-                    rgb_matrix_config.speed -= 8;
+                    rgb_matrix_config.speed -= 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -146,7 +146,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_HUEI:
             if (record->event.pressed) {
                 if (rgb_matrix_config.hsv.h < 255) {
-                    rgb_matrix_config.hsv.h += 8;
+                    rgb_matrix_config.hsv.h += 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -155,7 +155,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_HUED:
             if (record->event.pressed) {
                 if (rgb_matrix_config.hsv.h > 0) {
-                    rgb_matrix_config.hsv.h -= 8;
+                    rgb_matrix_config.hsv.h -= 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -165,7 +165,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_VALUEI:
             if (record->event.pressed) {
                 if (rgb_matrix_config.hsv.v < 255) {
-                    rgb_matrix_config.hsv.v += 8;
+                    rgb_matrix_config.hsv.v += 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -174,7 +174,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_VALUED:
             if (record->event.pressed) {
                 if (rgb_matrix_config.hsv.v > 0) {
-                    rgb_matrix_config.hsv.v -= 8;
+                    rgb_matrix_config.hsv.v -= 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -184,7 +184,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_SATURATIONI:
             if (record->event.pressed) {
                 if (rgb_matrix_config.hsv.s < 255) {
-                    rgb_matrix_config.hsv.s += 8;
+                    rgb_matrix_config.hsv.s += 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
@@ -193,7 +193,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RGB_SATURATIOND:
             if (record->event.pressed) {
                 if (rgb_matrix_config.hsv.s > 0) {
-                    rgb_matrix_config.hsv.s -= 8;
+                    rgb_matrix_config.hsv.s -= 2;
                 }
                 eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
                 rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again

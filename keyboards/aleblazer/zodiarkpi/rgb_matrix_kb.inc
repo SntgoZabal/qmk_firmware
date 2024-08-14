@@ -228,7 +228,10 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
         hsv.h = -(((2*hue_range)/M_PI)*normalized_pivot) + hue_end + (2*hue_range);
         //hsv.h = 192;
     } else if ((normalized_pivot >= ((3*M_PI)/2))&&(normalized_pivot < (2*M_PI))) {
-        //hsv.h = (((2*hue_range)/M_PI)*normalized_pivot) + hue_srt - (3*hue_range);
+        hsv.h = (((2*hue_range)/M_PI)*normalized_pivot) + hue_srt - (3*hue_range);
+        //hsv.h = 0;
+    } else if ((normalized_pivot >= (2*M_PI))&&(normalized_pivot < (2.5*M_PI))) {
+        //hsv.h = -(((2*hue_range)/M_PI)*normalized_pivot) + hue_end + (4*hue_range);
         hsv.h = 0;
     }
     

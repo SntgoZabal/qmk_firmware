@@ -219,8 +219,8 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
     //hsv.h = ((hue_range/2)*(cosf(2*normalized_pivot)+1))+hue_srt;
     
     if ((normalized_pivot >= 0)&&(normalized_pivot < (M_PI/2))) {
-        //hsv.h = -(((2*hue_range)/M_PI)*normalized_pivot) + hue_end;
-        hsv.h = 64;
+        hsv.h = -(((2*hue_range)/M_PI)*normalized_pivot) + hue_end;
+        //hsv.h = 64;
     } else if ((normalized_pivot >= (M_PI/2))&&(normalized_pivot < M_PI)) {
         hsv.h = (((2*hue_range)/M_PI)*normalized_pivot) + (hue_srt-hue_range);
         //hsv.h = 128;
@@ -228,8 +228,8 @@ static HSV SZV_EFFECT_4_math(HSV hsv, uint8_t i, uint8_t time) {
         hsv.h = -(((2*hue_range)/M_PI)*normalized_pivot) + hue_end + (2*hue_range);
         //hsv.h = 192;
     } else if ((normalized_pivot >= ((3*M_PI)/2))&&(normalized_pivot < (2*M_PI))) {
-        hsv.h = (((2*hue_range)/M_PI)*normalized_pivot) + hue_srt - (3*hue_range);
-        //hsv.h = 0;
+        //hsv.h = (((2*hue_range)/M_PI)*normalized_pivot) + hue_srt - (3*hue_range);
+        hsv.h = 0;
     }
     
     

@@ -23,7 +23,15 @@ enum custom_keycodes {
     KB_MODE3,
     KB_ACCENT,
     RGB_ANIM_SPEED_UP,
-    RGB_ANIM_SPEED_DOWN
+    RGB_ANIM_SPEED_DOWN,
+    RGB_SPEEDI,
+    RGB_SPEEDD,
+    RGB_HUEI,
+    RGB_HUED,
+    RGB_VALUEI,
+    RGB_VALUED,
+    RGB_SATURATIONI,
+    RGB_SATURATIOND
 };
 
 /*
@@ -116,6 +124,82 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         
+        case RGB_SPEEDI:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.speed < 255) {
+                    rgb_matrix_config.speed += 8;
+                }
+                eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
+            }
+            return false;
+        case RGB_SPEEDD:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.speed > 0) {
+                    rgb_matrix_config.speed -= 8;
+                }
+                eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
+            }
+            return false;
+        
+        case RGB_HUEI:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.hsv.h < 255) {
+                    rgb_matrix_config.hsv.h += 8;
+                }
+                eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
+            }
+            return false;
+        case RGB_HUED:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.hsv.h > 0) {
+                    rgb_matrix_config.hsv.h -= 8;
+                }
+                eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
+            }
+            return false;
+
+        case RGB_VALUEI:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.hsv.v < 255) {
+                    rgb_matrix_config.hsv.v += 8;
+                }
+                eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
+            }
+            return false;
+        case RGB_VALUED:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.hsv.v > 0) {
+                    rgb_matrix_config.hsv.v -= 8;
+                }
+                eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
+            }
+            return false;
+
+        case RGB_SATURATIONI:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.hsv.s < 255) {
+                    rgb_matrix_config.hsv.s += 8;
+                }
+                eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
+            }
+            return false;
+        case RGB_SATURATIOND:
+            if (record->event.pressed) {
+                if (rgb_matrix_config.hsv.s > 0) {
+                    rgb_matrix_config.hsv.s -= 8;
+                }
+                eeconfig_update_rgb_matrix();  // Save the new speed to EEPROM
+                rgb_matrix_enable_noeeprom();  // Apply changes without saving to EEPROM again
+            }
+            return false;
+        
         //default:
             /*
             if (!record->event.pressed) {
@@ -170,8 +254,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       QK_BOOT,   KC_F1,       KC_F2,        KC_F3,     KC_F4,      KC_F5,                                                            KC_F6,      KC_F7,       KC_F8,       KC_F9,      KC_F10,                KC_BSPC,
       _______,   _______,     _______,      _______,   _______,    _______,                                                          QK_BOOT,    _______,     _______,     _______,    RGB_ANIM_SPEED_UP,     KC_F11,
       _______,   _______,     _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_TOG,     _______,     _______,    RGB_ANIM_SPEED_DOWN,   KC_F12,
-      _______,   _______,     _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_MOD,     RGB_SPI,     RGB_HUI,    RGB_SAI,               RGB_VAI,
-      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  _______,         _______,         _______,          _______,           _______,           RGB_RMOD,    RGB_SPD,     RGB_HUD,    RGB_SAD,               RGB_VAD
+      _______,   _______,     _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_MOD,     RGB_SPEEDI,  RGB_HUEI,   RGB_SATURATIONI,       RGB_VALUEI,
+      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  _______,         _______,         _______,          _______,           _______,           RGB_RMOD,    RGB_SPEEDD,  RGB_HUED,   RGB_SATURATIOND,       RGB_VALUED
       )
 
 };

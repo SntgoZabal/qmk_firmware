@@ -106,12 +106,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         */
         case KB_ACCENT_MAC:
             if (record->event.pressed) {
+                uint8_t mods = get_mods();  // Store the current modifier state
                 // Check if the Shift key is held
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    // Send tilde (~) if Shift is held
+                if (mods & MOD_MASK_SHIFT) {
+                    // Temporarily unregister Shift for the tilde (~)
+                    del_mods(MOD_MASK_SHIFT);
                     register_code(KC_RALT);  // Hold down Right Alt
                     tap_code(KC_N);          // Tap the N key (Option + N for tilde)
                     unregister_code(KC_RALT);  // Release Right Alt
+                    set_mods(mods);  // Restore the original modifier state, including Shift
                 } else {
                     // Send acute accent (´) if Shift is not held
                     register_code(KC_RALT);  // Hold down Right Alt

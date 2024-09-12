@@ -109,10 +109,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Check if the Shift key is held
                 if (get_mods() & MOD_MASK_SHIFT) {
                     // Send tilde (~) if Shift is held
-                    SEND_STRING(SS_TAP(X_RALT) SS_TAP(X_N));  // Simulate Option + N for tilde (~)
+                    register_code(KC_RALT);  // Hold down Right Alt
+                    tap_code(KC_N);          // Tap the N key (Option + N for tilde)
+                    unregister_code(KC_RALT);  // Release Right Alt
                 } else {
                     // Send acute accent (´) if Shift is not held
-                    SEND_STRING(SS_TAP(X_RALT) SS_TAP(X_E));  // Simulate Option + E for accent (´)
+                    register_code(KC_RALT);  // Hold down Right Alt
+                    tap_code(KC_E);          // Tap the E key (Option + E for accent)
+                    unregister_code(KC_RALT);  // Release Right Alt
                 }
             }
             return false; // Skip further processing

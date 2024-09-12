@@ -21,7 +21,7 @@ enum custom_keycodes {
     KB_MODE1,
     KB_MODE2,
     KB_MODE3,
-    KB_ACCENT,
+    KB_ACCENT_MAC,
     RGB_ANIM_SPEED_UP,
     RGB_ANIM_SPEED_DOWN,
     RGB_SPEEDI,
@@ -104,6 +104,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         */
+        case KB_ACCENT_MAC:
+            if (record->event.pressed) {
+                // Check if the Shift key is held
+                if (get_mods() & MOD_MASK_SHIFT) {
+                    // Send tilde (~) if Shift is held
+                    SEND_STRING(SS_TAP(X_RALT) SS_TAP(X_N));  // Simulate Option + N for tilde (~)
+                } else {
+                    // Send acute accent (´) if Shift is not held
+                    SEND_STRING(SS_TAP(X_RALT) SS_TAP(X_E));  // Simulate Option + E for accent (´)
+                }
+            }
+            return false; // Skip further processing
         
         case RGB_ANIM_SPEED_UP:
             if (record->event.pressed) {
@@ -228,38 +240,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     //Windows Keyboard
     [0] = LAYOUT(
-      KC_ESC,    KC_1,        KC_2,         KC_3,      KC_4,       KC_5,                                                             KC_6,       KC_7,        KC_8,        KC_9,       KC_0,                  KC_BSPC,
-      KC_TAB,    KC_Q,        KC_W,         KC_E,      KC_R,       KC_T,                                                             KC_Y,       KC_U,        KC_I,        KC_O,       KC_P,                  KC_LBRC,
-      KC_CAPS,   KC_A,        KC_S,         KC_D,      KC_F,       KC_G,     KC_ENT,     KC_MUTE,          RGB_TOG,     KC_ENT,      KC_H,       KC_J,        KC_K,        KC_L,       KC_SCLN,               KC_RBRC,
-      KC_LSFT,   KC_Z,        KC_X,         KC_C,      KC_V,       KC_B,     KC_LCTL,    KC_LALT,          KC_EQL,      KC_MINS,     KC_N,       KC_M,        KC_COMM,     KC_DOT,     KC_SLSH,               KC_GRAVE,
-      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  KC_QUOTE,        KC_SPC,          KC_LGUI,          KC_RGUI,           KC_SPC,            KC_LEFT,     KC_UP,       KC_DOWN,    KC_RGHT,               KC_BSLS
+      KC_ESC,    KC_1,        KC_2,         KC_3,      KC_4,           KC_5,                                                             KC_6,       KC_7,        KC_8,        KC_9,       KC_0,                  KC_BSPC,
+      KC_TAB,    KC_Q,        KC_W,         KC_E,      KC_R,           KC_T,                                                             KC_Y,       KC_U,        KC_I,        KC_O,       KC_P,                  KC_LBRC,
+      KC_CAPS,   KC_A,        KC_S,         KC_D,      KC_F,           KC_G,     KC_ENT,     KC_MUTE,          RGB_TOG,     KC_ENT,      KC_H,       KC_J,        KC_K,        KC_L,       KC_SCLN,               KC_RBRC,
+      KC_LSFT,   KC_Z,        KC_X,         KC_C,      KC_V,           KC_B,     KC_LCTL,    KC_LALT,          KC_EQL,      KC_MINS,     KC_N,       KC_M,        KC_COMM,     KC_DOT,     KC_SLSH,               KC_GRAVE,
+      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  KC_QUOTE,            KC_SPC,          KC_LGUI,          KC_RGUI,           KC_SPC,            KC_LEFT,     KC_UP,       KC_DOWN,    KC_RGHT,               KC_BSLS
     ),
 
     //Apple Keyboard
 	[1] = LAYOUT(
-      _______,   _______,     _______,      _______,   _______,    _______,                                                          _______,    _______,     _______,     _______,    _______,               _______,
-      _______,   _______,     _______,      _______,   _______,    _______,                                                          _______,    _______,     _______,     _______,    _______,               _______,   
-      _______,   _______,     _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    _______,     _______,     _______,    _______,               _______,
-      _______,   _______,     _______,      _______,   _______,    _______,  KC_LGUI,    _______,          _______,     _______,     _______,    _______,     _______,     _______,    _______,               _______,
-      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  _______,         _______,         KC_LCTL,          _______,           _______,           _______,     _______,     _______,    _______,               _______
+      _______,   _______,     _______,      _______,   _______,        _______,                                                          _______,    _______,     _______,     _______,    _______,               _______,
+      _______,   _______,     _______,      _______,   _______,        _______,                                                          _______,    _______,     _______,     _______,    _______,               _______,   
+      _______,   _______,     _______,      _______,   _______,        _______,  _______,    _______,          _______,     _______,     _______,    _______,     _______,     _______,    _______,               _______,
+      _______,   _______,     _______,      _______,   _______,        _______,  KC_LGUI,    _______,          _______,     _______,     _______,    _______,     _______,     _______,    _______,               KC_QUOTE,
+      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  KB_ACCENT_MAC,       _______,         KC_LCTL,          _______,           _______,           _______,     _______,     _______,    _______,               _______
       ),
 
     //Mouse & NumPad
 	[2] = LAYOUT(
-      KC_ESC,    KC_F1,       KC_F2,        KC_F3,     KC_F4,      KC_F5,                                                            KC_F6,      KC_F7,       KC_F8,       KC_F9,      KC_F10,                KC_BSPC,
-      KC_PSCR,   _______,     _______,      _______,   _______,    _______,                                                          KC_NUM,     KC_P7,       KC_P8,       KC_P9,      KC_KP_ASTERISK,        KC_F11,   
-      KC_MPLY,   _______,     _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     KC_PSLS,    KC_P4,       KC_P5,       KC_P6,      KC_KP_MINUS,           KC_F12,
-      _______,   _______,     _______,      _______,   _______,    _______,  _______,    _______,          MS_LEFT,     MS_RGHT,     _______,    KC_P1,       KC_P2,       KC_P3,      KC_KP_PLUS,            _______,
-      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  _______,         _______,         KC_SLEP,          _______,           _______,           KC_P0,       KC_PDOT,     KC_PENT,    _______,               _______
+      KC_ESC,    KC_F1,       KC_F2,        KC_F3,     KC_F4,          KC_F5,                                                            KC_F6,      KC_F7,       KC_F8,       KC_F9,      KC_F10,                KC_BSPC,
+      KC_PSCR,   _______,     _______,      _______,   _______,        _______,                                                          KC_NUM,     KC_P7,       KC_P8,       KC_P9,      KC_KP_ASTERISK,        KC_F11,   
+      KC_MPLY,   _______,     _______,      _______,   _______,        _______,  _______,    _______,          _______,     _______,     KC_PSLS,    KC_P4,       KC_P5,       KC_P6,      KC_KP_MINUS,           KC_F12,
+      _______,   _______,     _______,      _______,   _______,        _______,  _______,    _______,          MS_LEFT,     MS_RGHT,     _______,    KC_P1,       KC_P2,       KC_P3,      KC_KP_PLUS,            _______,
+      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  _______,             _______,         KC_SLEP,          _______,           _______,           KC_P0,       KC_PDOT,     KC_PENT,    _______,               _______
       ),
 
     //RGB Settings
 	[3] = LAYOUT(
-      QK_BOOT,   KC_F1,       KC_F2,        KC_F3,     KC_F4,      KC_F5,                                                            KC_F6,      KC_F7,       KC_F8,       KC_F9,      KC_F10,                KC_BSPC,
-      _______,   _______,     _______,      _______,   _______,    _______,                                                          _______,    _______,     _______,     _______,    RGB_ANIM_SPEED_UP,     KC_F11,
-      _______,   _______,     _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_TOG,     _______,     _______,    RGB_ANIM_SPEED_DOWN,   KC_F12,
-      _______,   _______,     _______,      _______,   _______,    _______,  _______,    _______,          _______,     _______,     _______,    RGB_MOD,     RGB_SPEEDI,  RGB_HUEI,   RGB_SATURATIONI,       RGB_VALUEI,
-      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  _______,         _______,         _______,          _______,           _______,           RGB_RMOD,    RGB_SPEEDD,  RGB_HUED,   RGB_SATURATIOND,       RGB_VALUED
+      QK_BOOT,   KC_F1,       KC_F2,        KC_F3,     KC_F4,          KC_F5,                                                            KC_F6,      KC_F7,       KC_F8,       KC_F9,      KC_F10,                KC_BSPC,
+      _______,   _______,     _______,      _______,   _______,        _______,                                                          _______,    _______,     _______,     _______,    RGB_ANIM_SPEED_UP,     KC_F11,
+      _______,   _______,     _______,      _______,   _______,        _______,  _______,    _______,          _______,     _______,     _______,    RGB_TOG,     _______,     _______,    RGB_ANIM_SPEED_DOWN,   KC_F12,
+      _______,   _______,     _______,      _______,   _______,        _______,  _______,    _______,          _______,     _______,     _______,    RGB_MOD,     RGB_SPEEDI,  RGB_HUEI,   RGB_SATURATIONI,       RGB_VALUEI,
+      KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  _______,             _______,         _______,          _______,           _______,           RGB_RMOD,    RGB_SPEEDD,  RGB_HUED,   RGB_SATURATIOND,       RGB_VALUED
       )
 
 };

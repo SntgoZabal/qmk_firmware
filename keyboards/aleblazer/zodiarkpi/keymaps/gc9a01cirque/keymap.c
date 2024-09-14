@@ -16,8 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "unicode.h"
 #include "zodiarkpi.h"
 
-#define TOUCHPAD_LAYER 3  // Replace 2 with the layer you want to activate
-
 enum custom_keycodes {
     KB_MODE0 = SAFE_RANGE,
     KB_MODE1,
@@ -245,14 +243,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+// Define the layer to activate when the touchpad is used
+#define TOUCHPAD_LAYER 2  // Change this to your desired layer
+
+// Track whether the touchpad is actively being used
+static bool touchpad_active = false;
+
+// This function handles pointing device input and toggles layers
 void process_pointing_device(report_mouse_t *mouse_report) {
     if (mouse_report->x != 0 || mouse_report->y != 0 || mouse_report->buttons) {
         // Touchpad is sensing movement or button input
-        layer_on(TOUCHPAD_LAYER);  // Activate the layer
+        if (!touchpad_active) {
+            touchpad_active = true;
+            layer_on(TOUCHPAD_LAYER);  // Activate the layer
+        }
     } else {
         // No input from the touchpad
-        layer_off(TOUCHPAD_LAYER);  // Deactivate the layer
+        if (touchpad_active) {
+            touchpad_active = false;
+            layer_off(TOUCHPAD_LAYER);  // Deactivate the layer
+        }
     }
+}
+
+// This task continuously checks the state of the pointing device
+void pointing_device_task(void) {
+    report_mouse_t mouse_report = pointing_device_get_report();
+    process_pointing_device(&mouse_report);
 }
 
 //void pointing_device_init_user(void) {

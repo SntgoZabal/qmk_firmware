@@ -265,12 +265,13 @@ void process_pointing_device(report_mouse_t *mouse_report) {
         }
     }
 }
-
+/*
 // This task continuously checks the state of the pointing device
 void pointing_device_task(void) {
     report_mouse_t mouse_report = pointing_device_get_report();
     process_pointing_device(&mouse_report);
 }
+*/
 
 //void pointing_device_init_user(void) {
 //    set_auto_mouse_layer(3); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>

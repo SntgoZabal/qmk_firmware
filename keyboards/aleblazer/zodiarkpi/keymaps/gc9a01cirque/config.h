@@ -14,6 +14,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+
 // Screen support
 #define GC9A01_NUM_DEVICES 1
 #define QUANTUM_PAINTER_DISPLAY_TIMEOUT 0

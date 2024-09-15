@@ -243,6 +243,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+
+/*
 // Define the layer to activate when the touchpad is used
 #define TOUCHPAD_LAYER 2  // Change this to your desired layer
 
@@ -265,6 +267,10 @@ void process_pointing_device(report_mouse_t *mouse_report) {
         }
     }
 }
+*/
+
+
+
 /*
 // This task continuously checks the state of the pointing device
 void pointing_device_task(void) {

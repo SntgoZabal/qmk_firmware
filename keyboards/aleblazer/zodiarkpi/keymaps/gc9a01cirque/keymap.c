@@ -16,6 +16,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "unicode.h"
 #include "zodiarkpi.h"
 
+void pointing_device_init_user(void) {
+    //set_auto_mouse_layer(<mouse_layer>); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+}
+
 enum custom_keycodes {
     KB_MODE0 = SAFE_RANGE,
     KB_MODE1,
@@ -278,11 +283,6 @@ void pointing_device_task(void) {
     process_pointing_device(&mouse_report);
 }
 */
-
-//void pointing_device_init_user(void) {
-//    set_auto_mouse_layer(3); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
-//    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
-//}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 

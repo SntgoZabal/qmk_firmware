@@ -35,5 +35,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
 #define CIRQUE_PINNACLE_TAPPING_TERM 100
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE // Activate auto mouse
-#define AUTO_MOUSE_DEFAULT_LAYER 2   // choose layer for mouse keys unless elsewhere
+#define AUTO_MOUSE_DEFAULT_LAYER 4   // choose layer for mouse keys unless elsewhere
 #define POINTING_DEVICE_COMBINED   // Combine the pointing device reports from both halves

@@ -320,7 +320,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______,   _______,     _______,      _______,   _______,        _______,  _______,    _______,          _______,     _______,     _______,    RGB_TOG,     _______,     _______,    RGB_ANIM_SPEED_DOWN,   KC_F12,
       _______,   _______,     _______,      _______,   _______,        _______,  _______,    _______,          _______,     _______,     _______,    RGB_MOD,     RGB_SPEEDI,  RGB_HUEI,   RGB_SATURATIONI,       RGB_VALUEI,
       KB_MODE0,  KB_MODE1,    KB_MODE2,     KB_MODE3,  _______,             _______,         _______,          _______,           _______,           RGB_RMOD,    RGB_SPEEDD,  RGB_HUED,   RGB_SATURATIOND,       RGB_VALUED
-      )
+      ),
 
     //Mouse Layer
     [4] = LAYOUT(

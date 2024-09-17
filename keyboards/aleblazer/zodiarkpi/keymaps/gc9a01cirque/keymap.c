@@ -134,9 +134,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KB_SPACELEFT:
             if (record->event.pressed) {
                 uint8_t mods = get_mods();  // Store the current modifier state
-                register_code(KC_RCTL);  // Hold down Right Ctl
-                tap_code(KC_LEFT);          // Tap the left arrow key (Control + Left for tilde)
-                unregister_code(KC_RCTL);  // Release Right Ctl
+                register_code(KC_LCTL);  // Hold down Left Ctl
+                tap_code(KC_LEFT);          // Tap the Left Arrow (Control + Left)
+                unregister_code(KC_LCTL);  // Release Left Ctl
                 set_mods(mods);  // Restore the original modifier state, including Shift
             }
             return false; // Skip further processing
@@ -144,9 +144,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KB_SPACERGHT:
             if (record->event.pressed) {
                 uint8_t mods = get_mods();  // Store the current modifier state
-                register_code(KC_RCTL);  // Hold down Right Ctl
-                tap_code(KC_RGHT);          // Tap the right arrow key (Control + Right for tilde)
-                unregister_code(KC_RCTL);  // Release Right Ctl
+                register_code(KC_LCTL);  // Hold down Left Ctl
+                tap_code(KC_RGHT);          // Tap the Right Arrow (Control + Right)
+                unregister_code(KC_LCTL);  // Release Left Ctl
                 set_mods(mods);  // Restore the original modifier state, including Shift
             }
             return false; // Skip further processing

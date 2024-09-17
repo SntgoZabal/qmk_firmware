@@ -27,6 +27,8 @@ enum custom_keycodes {
     KB_MODE2,
     KB_MODE3,
     KB_ACCENT_MAC,
+    KB_SPACELEFT,
+    KB_SPACERGHT,
     RGB_ANIM_SPEED_UP,
     RGB_ANIM_SPEED_DOWN,
     RGB_SPEEDI,

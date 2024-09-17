@@ -131,7 +131,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false; // Skip further processing
 
-        case KB_SPACELEFT
+        case KB_SPACELEFT:
             if (record->event.pressed) {
                 uint8_t mods = get_mods();  // Store the current modifier state
                 register_code(KC_RCTL);  // Hold down Right Ctl
@@ -141,7 +141,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false; // Skip further processing
 
-        case KB_SPACERGHT
+        case KB_SPACERGHT:
             if (record->event.pressed) {
                 uint8_t mods = get_mods();  // Store the current modifier state
                 register_code(KC_RCTL);  // Hold down Right Ctl

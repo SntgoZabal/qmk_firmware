@@ -90,8 +90,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 } else {
                     layer_off(2); 
                     // Restore the previous layout
-                    set_layout_mode(previous_layout);  // Update screen to the previous layout
-                }                
+                    set_layout_mode(previous_layout);  // Update screen to the previous layout         
             }
             return false;
         

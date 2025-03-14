@@ -29,8 +29,8 @@ enum custom_keycodes {
     KB_MODE2,
     KB_MODE3,
     KB_ACCENT_MAC,
-    KB_SPACELEFT,
-    KB_SPACERGHT,
+    //KB_SPACELEFT,
+    //KB_SPACERGHT,
     RGB_ANIM_SPEED_UP,
     RGB_ANIM_SPEED_DOWN,
     RGB_SPEEDI,
@@ -138,7 +138,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false; // Skip further processing
-
+        /*
         case KB_SPACELEFT:
             if (record->event.pressed) {
                 uint8_t mods = get_mods();  // Store the current modifier state
@@ -158,6 +158,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_mods(mods);  // Restore the original modifier state, including Shift
             }
             return false; // Skip further processing
+        */
         
         case RGB_ANIM_SPEED_UP:
             if (record->event.pressed) {

@@ -16,6 +16,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "unicode.h"
 #include "zodiarkpi.h"
 
+static uint8_t previous_layout = 0;  // Default to Layer 0
+
 void pointing_device_init_user(void) {
     //set_auto_mouse_layer(<mouse_layer>); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work

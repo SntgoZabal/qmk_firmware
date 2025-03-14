@@ -185,7 +185,7 @@ void keyboard_post_init_user(void) {
   rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
 
   // Set initial layout mode to KB_MODE_0
-  set_layout_mode(KB_MODE_0);
+  //set_layout_mode(KB_MODE_0);
 }
 
 uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {

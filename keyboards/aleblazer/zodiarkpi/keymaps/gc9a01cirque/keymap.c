@@ -15,7 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include "unicode.h"
 #include "zodiarkpi.h"
-#define EECONFIG_LAYOUT_MODE (EECONFIG_USER)
+//#define EECONFIG_LAYOUT_MODE (EECONFIG_USER)
 
 static uint8_t previous_layout = 0;  // Default to Layer 0
 
@@ -60,7 +60,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 // Switch to layer 0
                 layer_move(0);
-                eeconfig_update_user(EECONFIG_LAYOUT_MODE, 0);
+                //eeconfig_update_user(EECONFIG_LAYOUT_MODE, 0);
                 // Switch to custom effect 0
                 //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
                 // Change image
@@ -72,7 +72,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 // Switch to layer 1
                 layer_move(1);
-                eeconfig_update_user(EECONFIG_LAYOUT_MODE, 1);
+                //eeconfig_update_user(EECONFIG_LAYOUT_MODE, 1);
                 // Switch to custom effect 1
                 //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
                 // Change image

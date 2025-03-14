@@ -77,12 +77,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         
         case KB_MODE2:
             if (record->event.pressed) {
+                // Store the currently active layer before switching
+                previous_layout = get_highest_layer(layer_state);
                 // Switch to layer 2
-                layer_move(2);
+                layer_on(2);  
                 // Switch to custom effect 2
                 //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_2);
                 // Change image
                 set_layout_mode(KB_MODE_2);
+                } else {
+                    layer_off(2); 
+                    // Restore the previous layout
+                    set_layout_mode(previous_layout);  // Update screen to the previous layout
+                }                
             }
             return false;
         

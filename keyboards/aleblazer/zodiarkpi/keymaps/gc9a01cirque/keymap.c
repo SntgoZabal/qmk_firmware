@@ -60,7 +60,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 // Switch to layer 0
                 layer_move(0);
-                eeconfig_update_user(EECONFIG_LAYOUT_MODE, 0);
                 // Switch to custom effect 0
                 //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_0);
                 // Change image
@@ -71,8 +70,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KB_MODE1:
             if (record->event.pressed) {
                 // Switch to layer 1
-                layer_move(1);
-                eeconfig_update_user(EECONFIG_LAYOUT_MODE, 1);
                 // Switch to custom effect 1
                 //rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SZV_EFFECT_1);
                 // Change image

@@ -186,16 +186,6 @@ void keyboard_post_init_user(void) {
 
   // Set initial layout mode to KB_MODE_0
   //set_layout_mode(KB_MODE_0);
-    uint8_t saved_layout = eeconfig_read_user(EECONFIG_LAYOUT_MODE);
-
-    // Restore the saved mode if it's valid (1 or 2)
-    if (saved_layout == 1) {
-        layer_move(1);
-        set_layout_mode(KB_MODE_1);  // Update screen
-    } else if (saved_layout == 2) {
-        layer_move(2);
-        set_layout_mode(KB_MODE_2);  // Update screen
-    }
 }
 
 uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
